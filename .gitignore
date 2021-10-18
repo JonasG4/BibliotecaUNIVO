@@ -1,5 +1,1 @@
-public/css/style.css
-public/js/floatingLabels.js
-public/js/validations.js
-app/Views/auth/
-app/Controllers/Auth.php
+/app/Views/auth/google/

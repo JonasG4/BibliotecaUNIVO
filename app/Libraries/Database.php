@@ -42,7 +42,7 @@ class Database{
             case is_int($value):
                 $type = PDO::PARAM_INT;
                 break;
-            case is_bool($value):
+            case is_bool($value):   
                 $type = PDO::PARAM_BOOL;
                 break;
             case is_null($value):
@@ -74,9 +74,9 @@ class Database{
     }
 
     //Cuenta la cantidad de filas 
-    public function countRow(){
+    public function rowCount(){
         $this->execute();
-        return $this->statement->countRow();
+        return $this->statement->rowCount();
     }
 
 }

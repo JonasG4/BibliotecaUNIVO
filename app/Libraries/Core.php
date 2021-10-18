@@ -12,7 +12,6 @@ class Core {
 
         if(file_exists('../app/Controllers/' . ucwords($url[0]. '.php'))){
             $this->currentController = ucwords($url[0]);
-
             unset($url[0]);
         }
     
@@ -23,14 +22,17 @@ class Core {
     if(isset($url[1])){
         if(method_exists($this->currentController, $url[1])){
             $this->currentMethod = $url[1];
-            
             unset($url[1]);
         }
     }
     
     $this->params = $url ? array_values($url) : [];
     
-    call_user_func([$this->currentController, $this->currentMethod], $this->params);
+    if(method_exists($this->currentController, $this->currentMethod)){
+        call_user_func([$this->currentController, $this->currentMethod], $this->params);
+    }else{
+        require_once approot . '/Views/Errors/404.php';
+    }
     
     }
 

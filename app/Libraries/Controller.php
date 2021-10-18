@@ -1,7 +1,7 @@
 <?php 
 
 class Controller {
-    public function mode($model){
+    public function model($model){
         require_once '../app/Models/' . $model .'.php';
 
         return new $model();
@@ -11,7 +11,7 @@ class Controller {
         if(file_exists('../app/Views/' . $view . '.php')){
             require_once '../app/Views/'. $view . '.php';
         }else{
-            die("La vista no existe");
+            require_once approot . '/Views/Errors/404.php';
         }
     }
 }
