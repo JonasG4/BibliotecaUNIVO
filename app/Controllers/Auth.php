@@ -22,7 +22,7 @@ class Auth extends Controller{
 
             $data = [
                 'usernameOrEmail' => trim($_POST['usernameOrEmail']),
-                'password' => trim($_POST['password']),
+                'password' => trim($_POST['passwordUser']),
                 'usernameOrEmailError' => '',
                 'passwordError' => ''
             ];

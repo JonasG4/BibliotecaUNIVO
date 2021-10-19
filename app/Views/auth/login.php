@@ -16,7 +16,7 @@ require_once approot . '/Config/google_credentials.php';
         <!-- lgn = login -->
         <div class="lgn-container">
             <h3 class="title-form">Iniciar sesion</h3>
-            <form action="<?= urlroot ?>/auth/login" method="POST">
+            <form action="<?= urlroot ?>/auth/login" method="POST" id="form__floating">
                 <?php if (!empty($data['logError']) || isset($_GET['logError'])) : ?>
                     <div class="invalidFeedback">
                         <i class="fas fa-times-circle"></i>
@@ -25,16 +25,16 @@ require_once approot . '/Config/google_credentials.php';
                     </div>
                 <?php endif ?>
                 <div class="form-group">
-                    <div class="input-group">
-                        <input type="text" name="usernameOrEmail" class="form-control" autocomplete="off">
+                    <div class="input-group <?= empty($data['usernameOrEmailError']) ? "" : "form__error"; ?>" id="user__group">
+                        <input type="text" name="usernameOrEmail" class="form-control" autocomplete="off" value="<?= $data['usernameOrEmail'] ?>">
                         <label for="usernameOrEmail" class="floating-label">Usuario o correo eléctronico</label>
-                        <span class="error-message"><?= isset($data["usernameOrEmailError"]) ? $data["usernameOrEmailError"] : ""; ?></span>
+                        <span class="error-message" id="user__msg"><?= isset($data["usernameOrEmailError"]) ? $data["usernameOrEmailError"] : ""; ?></span>
                     </div>
-                    <div class="input-group">
-                        <input type="password" name="password" id="password" class="form-control" autocomplete="off">
-                        <label for="password" class="floating-label">Contraseña</label>
+                    <div class="input-group <?= empty($data['passwordError']) ? "" : "form__error"; ?>" id="passwordUser__group">
+                        <input type="password" name="passwordUser" id="passwordUser" class="form-control" autocomplete="off">
+                        <label for="passwordUser" class="floating-label">Contraseña</label>
                         <i class="far fa-eye-slash" id="pw-icon"></i>
-                        <span class="error-message"><?=  isset($data["passwordError"]) ? $data["passwordError"] : "" ?></span>
+                        <span class="error-message" id="passwordUser__msg"><?=  isset($data["passwordError"]) ? $data["passwordError"] : "" ?></span>
                     </div>
                     <button type="submit" class="btn">Iniciar sesión</button>
                 </div>

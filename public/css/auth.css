@@ -119,6 +119,20 @@
     border: 1px solid var(--primary-color);
 }
 
+#checkIcon{
+    position: absolute;
+    right: 15px;
+    top: 14px;
+    color: var(--txt-color-secondary);
+    background: white;
+}
+
+.active #checkIcon{
+    color: var(--color-success);
+}
+
+
+
 #pw-icon{
     position: absolute;
     right: 25px;
@@ -186,8 +200,8 @@
     color: var(--color-success) !important;
 }
 
-.form-control:focus + .form-error,
-.floating-label.form-error{
+.form__error .form-control:focus,
+.form__error .floating-label{
     color: var(--color-error) !important;
 }
 
@@ -195,9 +209,9 @@
 .form-control.form-success{
     border: 2px solid var(--color-success) !important;
 }
-.form-control.form-error,
-.form-control:focus.form-error{
-    border: 2px solid #ff4444 !important;
+.form__error .form-control,
+.form__error .form-control:focus{
+    border: 1px solid var(--color-error) !important;
 }
 .invalidFeedback{
     color: #f1f1f1;
@@ -221,8 +235,9 @@
     position: absolute;
     width: 100%;
     top: 45px;
-    left: 0;
+    left: 2px;
     font-size: 9px;
     color: var(--color-error);
     font-weight: 500;
+    text-align: left;
 }
