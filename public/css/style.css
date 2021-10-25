@@ -3,9 +3,11 @@
     /* Fondos */
     --bg-color-light: rgb(236, 236, 236);
     --bg-color-dark: #1a2138;
+    --bg-color-darkness: #090c14;
 
     /* Textos */
     --txt-color-light: #ededee;
+    /* --txt-color-secondary: #d1d8d8 */
     --txt-color-p: #262626;
     --txt-color-secondary: #8e8e8e;
    
@@ -16,10 +18,13 @@
     
     /* Hover colors */
     --text-color-head: #50ac56;
+    --text-color-head-secondary: #418f46;
     --border-color: #8c8c8c;
     --bg-front-color:  #222b45;
     --text-color-hover: #223745;
 }
+
+/* Blue Learning Book */
 
 /* GENERAL */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
@@ -32,32 +37,293 @@
 
 body{
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--bg-color-light);
 }
 
-/* NAVBAR */
-nav{
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding: 20px 0;
-    background: blue;
+/* CONTAINER */
+.container{
+margin-top: 50px;
+height: auto;
+display: grid;
+grid-template-columns: 1fr 1000px 1fr;
 }
 
-nav ul{
+.content{
+    background: #ededee;
+    grid-column: 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column; 
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    backdrop-filter: blur(40px);
+    border: solid 2px transparent;
+    background-clip: padding-box;
+    box-shadow:10px 10px 15px rgba(24, 24, 24, 0.08);
+    padding: 30px 50px;
+}
+
+.content__title{
+    color: var(--text-color-head);
+}
+
+/* NAVBAR */
+.nav{
+    /* position: absolute; */
+    width: 100%;
+    height: 60px;
+    background: var(--bg-front-color);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nav__list{
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     list-style: none;
+    margin-right: 60px;
 }
 
-nav ul li{
+.nav__list-item{
     margin: 0 20px;
+    font-weight: 600;
 }
 
-nav ul li a{
+.nav__list-item:first-child{
+    margin-right: auto;
+    margin-left: 100px;
+    font-size: 1.5rem;
+}
+
+.item__link{
     color: #fff;
     text-decoration: none;
 }
 
+.item__logo{
+    color: var(--text-color-head);
+    font-weight: 700;
+}
+
+.item__link:hover{
+    color:var(--text-color-head)
+}
+
+.item__display{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.item__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 10px;
+}
+
+.item__user-img{
+    width: 40px;
+    background-color: var(--text-color-head);
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.item__username{
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color-head)
+}
+
+.item__menu{
+    position: absolute;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    /* gap: 30px; */
+    align-items: center;
+    right: 40px;
+    top: 70px;
+    width: 250px;
+    height: auto;
+    border-radius: 5px;
+    list-style: none;
+    background:var(--bg-color-dark);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.item__menu.active{
+    opacity: 1;
+    pointer-events: all;
+    transition: all 0.2s ease-in;
+}
+
+
+.menu__option{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+    width: 100%;
+    padding-left: 20px ;
+    color: var(--txt-color-light);
+    cursor: pointer;
+    height: 60px;
+}
+
+.menu__option:hover{
+    background-color: var(--bg-front-color);
+}
+
+.option__link{
+    text-decoration: none;
+    color: white;
+}
+
+
+.menu__greeting{
+    width: 100%;
+    padding: 20px 20px 0 20px;
+    color: var(--txt-color-secondary);
+}
+
+.greeting_head{
+    font-size: 25px;
+    margin-left: auto;
+    text-align: left;
+    color: var(--text-color-head);
+}
+
+.greeting__name{
+    text-align: left;
+    font-size: 13px;
+    color: var(--txt-color-light);
+    font-weight: 100;
+}
+
+.greeting__divisor{
+    width: 100%;
+    margin: 15px 0 0 0;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+.option__logout{
+    background: var(--color-error);
+    padding: 15px;
+    text-align: center;
+    color: var(--bg-color-light);
+    border-radius: 0 0 5px 5px;
+    cursor: pointer;
+}
+
+.option__logout:hover{
+    background-color: #fa4b5c;
+}
+/* FOOTER */
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background-color: var(--bg-color-darkness);
+    color: var(--txt-color-light);
+    display: grid;
+    grid-template-areas: 
+    "contact "       
+    "page"
+    "logo"
+    "copyright";
+}
+
+@media (min-width: 600px){
+    .footer{
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: auto 30px;
+        grid-template-areas: 
+        "contact logo pages"
+        "copyright copyright copyright";
+        
+    }
+}
+
+/* Seccion de contactos */
+.footer__contact{
+    grid-area: contact;
+    display: flex;
+    gap: 60px;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.contact__container{
+    display: flex;
+    flex-flow: column wrap;
+    gap: 5px;
+}
+
+.contact__name{
+    font-style: 1rem;
+    font-weight: 500;
+    color: var(--text-color-head);
+}
+
+.contact__email{
+    font-size: .8rem;
+    font-family: 100;
+    color: var(--txt-color-secondary);
+}
+
+.contact__socialNet{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+.contact__tel{
+    font-size: 14px;
+}
+.socialNet__link{
+    color: var(--text-color-head);
+    font-size: 1rem;
+}
+
+/* Seccion del logo */
+.footer__logo{
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+/* Seccion de los vinculos */
+.footer__pages{
+    grid-area: pages;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    /* background-color: blue; */
+}
+
+.logo__img{
+    width: 100px;
+}
+
+.copyright{
+    grid-area: copyright;
+    color: #fff;
+    background: #000;
+    text-align: center;
+}

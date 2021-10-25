@@ -10,6 +10,9 @@ require_once approot . '/Views/Includes/head.php';
 require_once approot . '/Config/google_credentials.php';
 
 ?>
+<header>
+    <?php require_once approot . '/Views/Includes/navbar.php'; ?>
+</header>
 
 <body>
     <main class="auth-container">
@@ -34,7 +37,7 @@ require_once approot . '/Config/google_credentials.php';
                         <input type="password" name="passwordUser" id="passwordUser" class="form-control" autocomplete="off">
                         <label for="passwordUser" class="floating-label">Contraseña</label>
                         <i class="far fa-eye-slash" id="pw-icon"></i>
-                        <span class="error-message" id="passwordUser__msg"><?=  isset($data["passwordError"]) ? $data["passwordError"] : "" ?></span>
+                        <span class="error-message" id="passwordUser__msg"><?= isset($data["passwordError"]) ? $data["passwordError"] : "" ?></span>
                     </div>
                     <button type="submit" class="btn">Iniciar sesión</button>
                 </div>
@@ -44,16 +47,15 @@ require_once approot . '/Config/google_credentials.php';
                 <p>O</p>
                 <div class="l-line"></div>
             </div>
-            <a href="<?= $urlLogin?>" class="btn-google">
+            <a href="<?= $urlLogin ?>" class="btn-google">
                 <img src="https://i.ibb.co/GdRyFks/5847f9cbcef1014c0b5e48c8.png" class="logo-google" alt="logo de goole">
                 Inicia sesión con Google</a>
-                <p class="switchAuth">
-                    ¿No tienes cuenta?<a href="<?= urlroot; ?>/auth/register"> Registrate</a>
-                </p>
+            <p class="switchAuth">
+                ¿No tienes cuenta?<a href="<?= urlroot; ?>/auth/register"> Registrate</a>
+            </p>
         </div>
-        <!-- <div class="off-lgn-container">
-        </div> -->
     </main>
+    <!-- <?php require_once approot . '/Views/Includes/footer.php';?> -->
 </body>
 
 <script src="<?= urlroot ?>/public/js/floatingLabels.js?v=<?php echo time(); ?>"></script>

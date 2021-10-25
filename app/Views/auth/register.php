@@ -13,6 +13,9 @@ $confirmPasswordErr = empty($data["confirmPasswordError"]) ? " " : "form__error"
 ?>
 
 <body>
+    <header>
+        <?php require_once approot . '/Views/Includes/navbar.php'; ?>
+    </header>
     <!-- sgn = Sign In -->
     <div class="auth-container">
         <div class="sgn-container">

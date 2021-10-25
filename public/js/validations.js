@@ -100,6 +100,8 @@ const validationForm = (e) => {
           if(e.target.value == document.getElementById("password").value){
             document.getElementById("confirmPassword__group").classList.remove("form__error");
             document.getElementById("confirmPassword__group").classList.add("active");
+            document.getElementById('confirmPassword__msg').innerText = ''   
+
           }else{
             document.getElementById("confirmPassword__group").classList.remove("active");
             document.getElementById("confirmPassword__group").classList.add("form__error");
