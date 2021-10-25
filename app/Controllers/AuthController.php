@@ -1,6 +1,6 @@
 <?php 
 
-class Auth extends Controller{
+class AuthController extends Controller{
     public function __construct(){
         $this->userModel = $this->model('User');
     }
