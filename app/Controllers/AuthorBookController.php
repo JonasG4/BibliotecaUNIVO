@@ -63,7 +63,7 @@
 
                 if(empty($data['Author_Error']) || empty($data['Author_Error'])){
                     if($this->authorsBooksModel->Create($data)){
-                        $this-header('location: '. urlroot . '/AuthorBook/index');
+                        header('location: '. urlroot . '/AuthorBook/index');
                     }else{
                         die('No es posible añadir una nueva relación.');
                     }
@@ -118,7 +118,7 @@
 
                     if(empty($data['Author_Error']) || empty($data['Author_Error'])){
                         if($this->authorsBooksModel->Update($data)){
-                            $this-header('location: '. urlroot . '/AuthorBook/index');
+                            header('location: '. urlroot . '/AuthorBook/index');
                         }else{
                             die('No es posible actualizar el registro.');
                         }

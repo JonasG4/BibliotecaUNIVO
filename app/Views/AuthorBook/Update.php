@@ -1,16 +1,19 @@
 <?php
-    if(!isLoggedIn()){
-        header('location: ' . urlroot . '/auth/login');
-    }
-    require_once approot . '/Views/Includes/head.php';
+if (!isLoggedIn()) {
+    header('location: ' . urlroot . '/auth/login');
+}
+require_once approot . '/Views/Includes/head.php';
 ?>
 
 <body>
+    <header>
+        <?php require_once approot . '/Views/Includes/navbar.php'; ?>
+    </header>
     <main role="main">
         <section class="Section">
             <div class="Main__Head">
                 <h1>Actualizar relación</h1>
-                <a class="Main__Link bg-Secondary" href="<?= urlroot . '/AuthorBook/' ; ?>">
+                <a class="Main__Link bg-Secondary" href="<?= urlroot . '/AuthorBook/'; ?>">
                     <i class="fas fa-arrow-left"></i>
                     Regresar
                 </a>
@@ -20,17 +23,17 @@
                     <label for="First_Name">Autores: </label>
                     <select name="Id_Author" id="Id_Author">
                         <?php
-                            foreach($data['Authors'] as $Author):
-                                if($Author->Id_Author == $data['AuthorBook']->Id_Author):
+                        foreach ($data['Authors'] as $Author) :
+                            if ($Author->Id_Author == $data['AuthorBook']->Id_Author) :
                         ?>
-                                    <option selected value='<?=$Author->Id_Author?>'><?=$Author->First_Name . $Author->Last_Name?></option>;
-                        <?php
-                                else:
-                        ?>
-                                    <option value='<?=$Author->Id_Author?>'><?=$Author->First_Name . $Author->Last_Name?></option>;
+                                <option selected value='<?= $Author->Id_Author ?>'><?= $Author->First_Name . $Author->Last_Name ?></option>;
+                            <?php
+                            else :
+                            ?>
+                                <option value='<?= $Author->Id_Author ?>'><?= $Author->First_Name . $Author->Last_Name ?></option>;
                         <?php
                             endif;
-                            endforeach;
+                        endforeach;
                         ?>
                     </select>
                     <span>
@@ -41,17 +44,17 @@
                     <label for="Last_Name">Libros: </label>
                     <select name="Id_Book" id="Id_Book">
                         <?php
-                            foreach($data['Books'] as $Book):
-                                if($Book->Id_Book == $data['AuthorBook']->Id_Book):
+                        foreach ($data['Books'] as $Book) :
+                            if ($Book->Id_Book == $data['AuthorBook']->Id_Book) :
                         ?>
-                                    <option selected value='<?=$Book->Id_Book?>'><?=$Book->Book_Title?></option>;
-                        <?php
-                                else:
-                        ?>
-                                    <option value='<?=$Book->Id_Book?>'><?=$Book->Book_Title?></option>;
+                                <option selected value='<?= $Book->Id_Book ?>'><?= $Book->Book_Title ?></option>;
+                            <?php
+                            else :
+                            ?>
+                                <option value='<?= $Book->Id_Book ?>'><?= $Book->Book_Title ?></option>;
                         <?php
                             endif;
-                            endforeach;
+                        endforeach;
                         ?>
                     </select>
                     <span>

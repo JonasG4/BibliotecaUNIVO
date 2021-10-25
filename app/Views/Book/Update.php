@@ -7,6 +7,9 @@
 
 <body>
     <main role="main">
+    <header>
+        <?php require_once approot . '/Views/Includes/navbar.php';?>
+    </header>
         <section class="Section">
             <div class="Main__Head">
                 <h1>Actualizar libro</h1>

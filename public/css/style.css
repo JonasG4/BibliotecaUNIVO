@@ -44,7 +44,7 @@
 
 body{
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: var(--bg-color-light);
 }
 
@@ -98,7 +98,7 @@ grid-template-columns: 1fr 1000px 1fr;
 
 .nav__list-item{
     margin: 0 20px;
-    font-weight: 600;
+    font-weight: 300;
 }
 
 .nav__list-item:first-child{
@@ -148,53 +148,92 @@ grid-template-columns: 1fr 1000px 1fr;
     color: var(--text-color-head)
 }
 
+/* MENU DESPLEGABLE */
 .item__menu{
     position: absolute;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    /* gap: 30px; */
     align-items: center;
     right: 40px;
-    top: 70px;
-    width: 250px;
-    height: auto;
+    top: 75px;
+    width: 200px;
+    height: 300px;
     border-radius: 5px;
     list-style: none;
     background:var(--bg-color-dark);
-    opacity: 0;
+    z-index: 1000;
+}
+
+@keyframes displayUp {
+    0%{
+        top: 75px;
+        height: 300px;
+    }
+    99%{
+        opacity: 1;
+    }
+    100%{
+        top: 60px;
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+    }
+}
+
+.item__menu.close{
+    animation: displayUp 0.3s ease-in-out ;    
     pointer-events: none;
-    transition: all 0.3s ease-in-out;
+}
+
+@keyframes displayDown {
+    0%{
+        top: 60px;
+        height: 0;
+        overflow: hidden;
+    }
+    100%{
+        top: 75px;
+        height: 300px;
+    }
 }
 
 .item__menu.active{
     opacity: 1;
     pointer-events: all;
-    transition: all 0.2s ease-in;
+    /* transition: all 0.2s ease-in; */
+    animation: displayDown 0.3s ease-in-out;
 }
 
+.menu__tip {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-right: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 15px solid var(--bg-color-dark);
+    top: -25px;
+    left: 50px;
+}
 
 .menu__option{
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 40px;
+    gap: 25px;
     width: 100%;
-    padding-left: 20px ;
+    padding: 0 20px;
     color: var(--txt-color-light);
     cursor: pointer;
-    height: 60px;
+    height: 45px;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .menu__option:hover{
     background-color: var(--bg-front-color);
 }
-
-.option__link{
-    text-decoration: none;
-    color: white;
-}
-
 
 .menu__greeting{
     width: 100%;
@@ -211,7 +250,7 @@ grid-template-columns: 1fr 1000px 1fr;
 
 .greeting__name{
     text-align: left;
-    font-size: 13px;
+    font-size: 12px;
     color: var(--txt-color-light);
     font-weight: 100;
 }
@@ -225,7 +264,6 @@ grid-template-columns: 1fr 1000px 1fr;
 
 .option__logout{
     background: var(--color-error);
-    padding: 15px;
     text-align: center;
     color: var(--bg-color-light);
     border-radius: 0 0 5px 5px;
@@ -267,7 +305,7 @@ grid-template-columns: 1fr 1000px 1fr;
 .footer__contact{
     grid-area: contact;
     display: flex;
-    gap: 60px;
+    gap: 20px;
     flex-flow: row wrap;
     justify-content: center;
     align-items: flex-start;
@@ -283,7 +321,7 @@ grid-template-columns: 1fr 1000px 1fr;
 }
 
 .contact__name{
-    font-style: 1rem;
+    font-style: 0.8rem;
     font-weight: 500;
     color: var(--text-color-head);
 }
@@ -301,7 +339,7 @@ grid-template-columns: 1fr 1000px 1fr;
     gap: 10px;
 }
 .contact__tel{
-    font-size: 14px;
+    font-size: 0.8rem;
 }
 .socialNet__link{
     color: var(--text-color-head);

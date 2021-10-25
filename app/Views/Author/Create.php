@@ -1,15 +1,19 @@
 <?php
-    if(!isLoggedIn()){
-        header('location: ' . urlroot . '/auth/login');
-    }
-    require_once approot . '/Views/Includes/head.php';
+if (!isLoggedIn()) {
+    header('location: ' . urlroot . '/auth/login');
+}
+require_once approot . '/Views/Includes/head.php';
 ?>
+
 <body>
+    <header>
+        <?php require_once approot . '/Views/Includes/navbar.php'; ?>
+    </header>
     <main role="main">
         <section class="Section">
             <div class="Main__Head">
                 <h1>Nuevo autor</h1>
-                <a class="Main__Link bg-Secondary" href="<?= urlroot . '/Author/' ; ?>">
+                <a class="Main__Link bg-Secondary" href="<?= urlroot . '/Author/'; ?>">
                     <i class="fas fa-arrow-left"></i>
                     Regresar
                 </a>
