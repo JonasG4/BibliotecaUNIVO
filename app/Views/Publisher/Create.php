@@ -5,6 +5,9 @@
     require_once approot . '/Views/Includes/head.php';
 ?>
 <body>
+<header>
+    <?php require_once approot . '/Views/Includes/navbar.php';?>
+    </header>
     <main role="main">
         <section class="Section">
             <div class="Main__Head">

@@ -1,15 +1,19 @@
 <?php
-    if(!isset($_SESSION['user_id'])){
-        header('location: ' . urlroot . '/auth/login');
-    }
-    require_once approot . '/Views/Includes/head.php';
+if (!isset($_SESSION['user_id'])) {
+    header('location: ' . urlroot . '/auth/login');
+}
+require_once approot . '/Views/Includes/head.php';
 ?>
+
 <body>
+    <header>
+        <?php require_once approot . '/Views/Includes/navbar.php'; ?>
+    </header>
     <main role="main">
         <section class="Section">
             <div class="Main__Head">
                 <h1>Nuevo autor</h1>
-                <a class="Main__Link bg-Secondary" href="<?= urlroot . '/Book/' ; ?>">
+                <a class="Main__Link bg-Secondary" href="<?= urlroot . '/Book/'; ?>">
                     <i class="fas fa-arrow-left"></i>
                     Regresar
                 </a>
@@ -61,10 +65,10 @@
                     <label for="Id_Genre">Géneros: </label>
                     <select name="Id_Genre" id="Id_Genre">
                         <?php
-                            foreach($data['Genres'] as $Genre)
-                                echo "<option value='{$Genre->Id_Genre}'>{$Genre->Genre_Name}</option>";
+                        foreach ($data['Genres'] as $Genre)
+                            echo "<option value='{$Genre->Id_Genre}'>{$Genre->Genre_Name}</option>";
                         ?>
-                    </select> 
+                    </select>
                     <span>
                         <?= isset($data['Genre_Error']) ? $data['Genre_Error'] : ''; ?>
                     </span>
@@ -74,9 +78,9 @@
                     <select name="Id_Publisher" id="Id_Publisher">
                         <option selected>--Selecciona una editorial--</option>
                         <?php
-                            foreach($data['Publishers'] as $Publisher){
-                                echo "<option value='{$Publisher->Id_Publisher}'>{$Publisher->Publisher_Name}</option>";
-                            }
+                        foreach ($data['Publishers'] as $Publisher) {
+                            echo "<option value='{$Publisher->Id_Publisher}'>{$Publisher->Publisher_Name}</option>";
+                        }
                         ?>
                     </select>
                     <span>

@@ -33,7 +33,8 @@ $greetings = [
                         <p class="item__username"><?= $_SESSION['username'] ?></p>
                     </div>
                 </button>
-                <ul class="item__menu" id='display-menu'>
+                <ul class="item__menu close" id='display-menu'>
+                    <div class="menu__tip"></div>
                     <li class="menu__greeting">
                         <p class="greeting_head"><?= $greetings[rand(0, 11)] ?>,</p>
                         <p class="greeting__name"><?= $_SESSION['name'] . ' ' . $_SESSION['lastname'] ?></p>

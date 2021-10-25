@@ -1,15 +1,19 @@
 <?php
-    if(!isset($_SESSION['user_id'])){
-        header('location: ' . urlroot . '/auth/login');
-    }
-    require_once approot . '/Views/Includes/head.php';
+if (!isset($_SESSION['user_id'])) {
+    header('location: ' . urlroot . '/auth/login');
+}
+require_once approot . '/Views/Includes/head.php';
 ?>
+
 <body>
+    <header>
+        <?php require_once approot . '/Views/Includes/navbar.php'; ?>
+    </header>
     <main role="main">
         <section class="Section">
             <div class="Main__Head">
                 <h1>Nueva Editorial</h1>
-                <a class="Main__Link bg-Secondary" href="<?= urlroot . '/Publisher/' ; ?>">
+                <a class="Main__Link bg-Secondary" href="<?= urlroot . '/Publisher/'; ?>">
                     <i class="fas fa-arrow-left"></i>
                     Regresar
                 </a>
@@ -31,7 +35,7 @@
                 </div>
                 <button type="submit" class="Main__Button Main__Button-Save">
                     <i class="fas fa-save"></i>
-                    Guardar 
+                    Guardar
                 </button>
             </form>
         </section>
