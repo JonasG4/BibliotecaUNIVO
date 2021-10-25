@@ -24,7 +24,10 @@ require_once approot . '/Views/Includes/head.php';
   <p>Los link de los productos serán enviados al correo que proporcionaste.</p>
 
   <button class="btn btn-links fire mt-5" type="button">Enviar Links</button>
+  <?php 
+  unset( $_SESSION["CARRITO"] );  
   
+  ?>
 </div>
 </div>
 <script>
