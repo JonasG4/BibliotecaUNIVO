@@ -1,0 +1,226 @@
+/*Scroll bar*/
+.Main__Card-Body, html {
+    overflow: auto;
+}
+.Main__Card-Body::-webkit-scrollbar, html::-webkit-scrollbar{
+    appearance: none;
+}
+.Main__Card-Body::-webkit-scrollbar:vertical, html::-webkit-scrollbar:vertical{
+    width: 10px;
+}
+.Main__Card-Body::-webkit-scrollbar:horizontal, html::-webkit-scrollbar:horizontal{
+    width: 10px;
+}
+.Main__Card-Body::-webkit-scrollbar-button:increment, .Main__Card-Body::-webkit-scrollbar-button, .html::-webkit-scrollbar-button:increment, .html::-webkit-scrollbar-button{
+    display: none;
+}
+.Main__Card-Body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
+    background-color: var(--bg-alternative);
+    border-radius: 1.2em;
+    border: 0.15em solid #e6e6e6;
+}
+.Section{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 1em;
+    width: 100%;
+}
+
+/*Colores*/
+.bg-Primary{
+    background-color: var(--bg-primary);
+}
+.bg-Primary:hover{
+    background-color: var(--bg-light-primary);
+}
+.bg-Secondary{
+    background-color: var(--bg-secondary);
+}
+.bg-Secondary:hover{
+    background-color: var(--bg-light-secondary);
+}
+.Main__Notify-Alert{
+    background-color: var(--color-error);
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+    width: 100%;
+}
+/*Cabezera del Main*/
+.Main__Head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4em;
+    width: 100%;
+}
+.Main__Head h1{
+    color: #666666;
+    font-size: 2.5em;
+}
+.Main__Link{
+    display: inline-block;
+    color: #fff;
+    border: none;
+    border-radius: 0.2em;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.5s;
+    padding: 0.5em;
+    height: 2.5em;
+    width: 25%;
+}
+/*Tarjetas*/
+
+.Main__Card{
+    background-color: #e6e6e6;
+    border: 0.05em solid #333333;
+    border-radius: 0.2em;
+    margin-top: 1em;
+    width: 50%;
+}
+
+.Main__Card-Head{
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-color-head);
+    padding: 1em;
+    width: 100%;
+}
+.Main__Card-Head h2:nth-child(2){
+    font-size: 1em;
+    color: #333333;
+}
+.Small-Text{
+    font-size: 1.05em;
+    color: var(--text-color-head);
+    margin-right: 0.5em;
+}
+.Main__Head-Text{
+    width: 16em;
+}
+.Main__Buttons-Container{
+    display: flex;
+    justify-content: space-between;
+    width: 4em;
+}
+.Main__Buttons-Container a i{
+    font-size: 1.5em;
+    color: #404040;
+    transition: color 0.3s;
+}
+.Main__Buttons-Container a .Button-Update:hover{
+    color: #ff6600;
+}
+.Main__Buttons-Container a .Button-Delete:hover{
+    color: #cc0066;
+}
+.Main__Card-Body{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-flow: column nowrap;
+    height: 8em;
+    width: 100%;
+}
+.Main__Body-Focus{
+    font-size: 0.8em;
+    padding: 1em;
+}
+.Main__Body-Focus p{
+    color: #4d4d4d;
+    font-weight: bold;
+}
+.Main__Body-Footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d9d9d9;
+    bottom: 5%;
+    padding: 0.5em;
+    width: 100%;
+}
+.Main__Body-Footer .Main__Pill{
+    border-radius: 0.5em;
+    background-color: var(--bg-secondary);
+    color: #fff;
+    font-size: 0.7em;
+    height: 2.4em;
+    padding: 0.5em;
+}
+.Main__Card-Footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #1a1a1a;
+    padding: 0.5em;
+    height: 3em;
+    width: 100%;
+}
+.Main__Card-Footer p{
+    color: #fff;
+    text-align: right;
+    font-size: 0.8em;
+}
+.Main__Card-Footer .Main__Span-Text{
+    color: var(--color-success);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/*Formulario*/
+.Main__Form{
+    border: 0.1em solid #d9d9d9;
+    border-radius: 0.2em;
+    padding: 1em;
+    width: 40%;
+}
+.Main__Form .Main__Form-Group{
+    display: inline-block;
+    width: 100%;
+}
+.Main__Form-Group label{
+    display: block;
+    color: #808080;
+    font-size: 0.9em;
+}
+.Main__Form-Group input, select, textarea{
+    display: block;
+    color: #1a1a1a;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 0 0.01em #999999;
+    margin: 0.5em 0 0.1em 0;
+    padding: 0.5em;
+    width: 100%;
+}
+.Main__Form-Group textarea{
+    resize: none;
+
+}
+.Main__Form-Group input:focus, textarea:focus{
+    box-shadow: 0 0 0.1em 0.08em #00e673;
+}
+.Main__Form .Main__Button{
+    display: block;
+    border: none;
+    padding: 0.5em 0;
+    width: 100%;
+}
+.Main__Form span{
+    display: inline-block;
+    color: #ee4466;
+    font-size: 0.8em;
+    height: 1em;
+}
+.Main__Button-Save{
+    background-color: #00b386;
+    color: #fff;
+    transition: background-color 0.5s;
+    margin-top: 1em;
+}
+.Main__Button-Save:hover{
+    background-color: #00cc99;
+    cursor: pointer;
+}
