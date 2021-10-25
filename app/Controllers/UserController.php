@@ -158,8 +158,7 @@ class UserController extends Controller{
                 }
             }
         }
-            $this->view('Users/changePassword', $data);
-        
+            $this->view('Users/changePassword', $data);     
     }
 }
 

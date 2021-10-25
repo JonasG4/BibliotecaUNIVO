@@ -4,8 +4,7 @@ class AuthController extends Controller{
     public function __construct(){
         $this->userModel = $this->model('User');
     }
-
-
+  
     //Metodo Login
     public function Login(){
         //Se establecen los valores de los inputs y errores
@@ -141,13 +140,15 @@ class AuthController extends Controller{
             $data['name'] = $google_info->name;
             $data['email'] = $google_info->email; 
             $data['username'] = str_replace(" ", "",$google_info->name) . rand(1, 50);
+
             $data['is_google_account'] = true;
+
             // $picture = $google_info->picture;
 
             //Settearle una contraseña
             $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
             $data['password'] = substr(str_shuffle($permitted_chars), 0, 10); 
-            
+
             //Hashear la contraseña
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
@@ -159,6 +160,7 @@ class AuthController extends Controller{
             }else{
               $registerSuccesful = $this->userModel->register($data);
               if($registerSuccesful){
+
                   header('location: ' .urlroot .'/auth/login');
               }else{
                   die('Internal Error');
@@ -168,8 +170,9 @@ class AuthController extends Controller{
                 header('location: ' . urlroot . '/');
             }        
     }
-    
+
     //Registro de Usuarios
+
     public function register(){
         $data = [
             'title' => 'Registro',
@@ -233,7 +236,7 @@ class AuthController extends Controller{
                     $data['usernameError'] = 'Este nombre de usuario ya está en uso.';
                 }
             }
-   
+
             //Validacion del correo electronico
             if(empty($data['email'])){
                 $data['emailError'] = 'Por favor, ingrese un correo electrónico.';
@@ -290,6 +293,7 @@ class AuthController extends Controller{
             $_SESSION['username'] = $user->username;
             $_SESSION['email'] = $user->email;
             $_SESSION['avatar'] = $user->avatar;
+
             header('location: ' . urlroot . '/');
         }
         

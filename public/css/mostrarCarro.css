@@ -1,0 +1,56 @@
+.title-car {
+  text-align: center;
+  color: var( --txt-color-p);
+  margin: 16px 0;
+}
+
+.title-table,tr{
+  text-align: center;
+  color: var(--txt-color-p);
+}
+
+.btn-eliminar {
+  background-color: var( --color-error);
+  color: white;
+}
+
+.btn-eliminar:hover {
+  background-color: rgb(212, 30, 30);
+}
+
+.lista-productos {
+  display: flex;
+}
+
+.email-container {
+  margin-left: 25px;
+  width: 40%;
+}
+
+.btn-pagar {
+  width: 100%;
+  background-color: var(--text-color-head);
+  color: white;
+  margin-top: 15px;
+  box-shadow: -2px 5px 5px -3px rgba(0,0,0,0.69);
+  -webkit-box-shadow: -2px 5px 5px -3px rgba(0,0,0,0.69);
+  -moz-box-shadow: -2px 5px 5px -3px rgba(0,0,0,0.69);
+}
+.btn-pagar:hover {
+  color: white;
+  background-color: #3c8644;
+}
+.label-correo {
+  font-size: 25px;
+}
+
+.email-input {
+  border: 1px solid rgb(189, 186, 186);
+  display: block;
+  padding: 8px;
+  width: 100%;
+}
+
+.email-input:focus {
+  outline: none;
+}
