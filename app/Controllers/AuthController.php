@@ -1,9 +1,11 @@
 <?php 
 
-class Auth extends Controller{
+class AuthController extends Controller{
     public function __construct(){
         $this->userModel = $this->model('User');
     }
+
+
     //Metodo Login
     public function Login(){
         //Se establecen los valores de los inputs y errores
@@ -22,7 +24,7 @@ class Auth extends Controller{
 
             $data = [
                 'usernameOrEmail' => trim($_POST['usernameOrEmail']),
-                'password' => trim($_POST['password']),
+                'password' => trim($_POST['passwordUser']),
                 'usernameOrEmailError' => '',
                 'passwordError' => ''
             ];
@@ -64,7 +66,6 @@ class Auth extends Controller{
         //Al ingresar al dominio, retornará la vista con los datos. 
         $this->view('auth/login', $data);
     }
-
 
     //Se registro la session de los google  
     public function GLogin(){
@@ -140,11 +141,12 @@ class Auth extends Controller{
             $data['name'] = $google_info->name;
             $data['email'] = $google_info->email; 
             $data['username'] = str_replace(" ", "",$google_info->name) . rand(1, 50);
+            $data['is_google_account'] = true;
             // $picture = $google_info->picture;
 
             //Settearle una contraseña
             $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
-            $data['password'] = substr(str_shuffle($permitted_chars), 0, 10);
+            $data['password'] = substr(str_shuffle($permitted_chars), 0, 10); 
             
             //Hashear la contraseña
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -157,7 +159,7 @@ class Auth extends Controller{
             }else{
               $registerSuccesful = $this->userModel->register($data);
               if($registerSuccesful){
-                  header('location: ' .urlroot .'/');
+                  header('location: ' .urlroot .'/auth/login');
               }else{
                   die('Internal Error');
               }
@@ -166,7 +168,8 @@ class Auth extends Controller{
                 header('location: ' . urlroot . '/');
             }        
     }
-
+    
+    //Registro de Usuarios
     public function register(){
         $data = [
             'title' => 'Registro',
@@ -196,6 +199,7 @@ class Auth extends Controller{
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
                 'confirmPassword' => trim($_POST['confirmPassword']),
+                'is_google_account' => false,
                 'nameError' => '',
                 'lastnameError'=> '',
                 'usernameError' => '',
@@ -229,7 +233,7 @@ class Auth extends Controller{
                     $data['usernameError'] = 'Este nombre de usuario ya está en uso.';
                 }
             }
-
+   
             //Validacion del correo electronico
             if(empty($data['email'])){
                 $data['emailError'] = 'Por favor, ingrese un correo electrónico.';
@@ -285,6 +289,7 @@ class Auth extends Controller{
             $_SESSION['lastname'] = $user->lastname;
             $_SESSION['username'] = $user->username;
             $_SESSION['email'] = $user->email;
+            $_SESSION['avatar'] = $user->avatar;
             header('location: ' . urlroot . '/');
         }
         

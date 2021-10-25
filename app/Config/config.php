@@ -14,4 +14,5 @@ define("urlroot", "http://localhost/Biblioteca");
 
 //Nombre del sitio
 define("sitename", "Biblioteca");
+define("imagenurl", "https://siab.blob.core.windows.net/imagenes/")
 ?>

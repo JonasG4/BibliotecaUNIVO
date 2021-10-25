@@ -1,7 +1,7 @@
 <?php 
-
 require_once approot . '/Views/auth/google/vendor/autoload.php';
 
+//Credenciales de GOOGLE
 $clientId = "543388865862-vv8q46fdu4i5fearlfff5dl6jr5e1al8.apps.googleusercontent.com";
 $clientSecret = "YdmYfR0HYc8-g_FkA9f_u-3c";
 $redirectUrlRegister = "http://localhost/Biblioteca/auth/gregister";
