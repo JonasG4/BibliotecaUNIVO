@@ -34,7 +34,6 @@ class Database{
     public function query($sql){
         $this->statement = $this->dbHandler->prepare($sql);
     }
-    
 
     //Une los valores, les asigna un tipo segun la BD
     public function bind($parameter, $value, $type = null){
@@ -70,7 +69,7 @@ class Database{
      //Devuelve un registro solicitado       
     public function single(){
         $this->execute();
-        return $this->statement->fetch(PDO::FETCH_OBJ);
+        return $this->statement->fetch(PDO::FETCH_OBJ); 
     }
 
     //Cuenta la cantidad de filas 

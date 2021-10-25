@@ -1,0 +1,141 @@
+.content{
+    align-items: center;
+}
+
+.content__options{
+    margin-top: 20px;
+}
+
+.user__data{
+    display: flex;
+    flex-flow: row;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.user__avatar{
+    width: 150px;
+    background-color: var(--text-color-head);
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.user__info{
+    display: flex;
+    flex-flow: column;
+    gap: 5px
+}
+
+.user__username{
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--text-color-head);
+}
+
+.user__fullname{
+    font: 0.8rem;
+    color: var(--txt-color-secondary);
+}
+
+.btn__group{
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+}
+
+.btn__option{
+    height: 50px;
+    width: auto;
+    padding: 0 10px;
+    border: none;
+    outline: none;
+    background: transparent;
+    border: 2px solid var(--text-color-head);
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--text-color-head);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.btn__option:hover{
+    background-color: var(--text-color-head);
+    color: var(--txt-color-light);
+    transition: all 0.2s ease-out;
+}
+
+#content__selected{
+    margin-top: 20px;
+}
+
+
+
+
+
+/* EDIT PROFILE */
+
+
+
+.form__container{
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.form__group{
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form__input{
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 5px
+}
+
+.input__label{
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--txt-color-p);
+}
+
+.input__control{
+    width: 350px;
+    padding: 15px;
+    border-radius: 5px;
+    outline:none;
+    border: none;
+    border: 1px solid rgba(24, 24, 24, .15);
+    font-size: 1rem;
+}
+
+.error__message{
+position: absolute;
+color: var(--color-error);
+bottom: -20px;
+font-size: 14px;
+}
+.form__btn{
+    padding: 10px;
+    width: 100px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background: var(--text-color-head);
+    color: var(--txt-color-light);
+    font-size: 1rem;
+    cursor: pointer;
+}
