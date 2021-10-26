@@ -19,9 +19,10 @@ class LoanController extends Controller{
         $this->view('Loan/index', $data);            
     }
 
-    public function request(){
+    public function request($id){
 
         $data = [
+            'title' => 'Nuevo Prestamo',
             'user_Id' => '',
             'book_Id' => '',
             'duration' => '',
@@ -34,20 +35,13 @@ class LoanController extends Controller{
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             
             $data['user_id'] = $_SESSION['user_id'];
-            $data['book_id'] = 1;
+            $data['Id_Book'] = 1;
             $data['duration'] = $_POST['duration'];
             $data['check_out_date'] = $_POST['check_out_date'];
             $data['return_date'] = $_POST['return_date'];           
         }
 
-      $data['book_Id'] = $_GET['bookId'];
-      $data['user_Id'] = $_SESSION['user_id'];
-      $response = $this->loanModel->findAllLoanByUserId($data);
-      
-      $data['loan'] = $response;
-
-
-        $this->view('Loan/request', $data);
+        $this->view('Loan/Create', $data);
     }
 
     public function Update($id){

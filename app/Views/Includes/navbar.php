@@ -1,5 +1,4 @@
 <?php
-
 $greetings = [
     "Hola",
     "Hello",
@@ -14,10 +13,8 @@ $greetings = [
     "Aloha",
     "Ni Hao"
 ]
-
 ?>
-
-<nav class="nav">
+<nav class="nav"  id="nav__display">
     <ul class="nav__list">
         <li class="nav__list-item"><a class="item__link item__logo" href="<?= urlroot . '/' ?>">OHARA</a></li>
         <li class="nav__list-item"><a class="item__link" href="<?= urlroot . '/'; ?>">Inicio</a></li>
@@ -32,14 +29,14 @@ $greetings = [
 
         <?php
         if (isLoggedIn()) : ?>
-            <li class="nav__list-item">
-                <button class="item__display" id="btn-menu" onclick="document.getElementById('display-menu').classList.toggle('active')">
+            <li class="nav__list-item item__session">
+                <button class="item__display" id="btn-menu">
                     <div class='item__container'>
                         <img class="item__user-img" src="<?= imagenurl . $_SESSION['avatar']; ?>" alt="<?= $_SESSION['name'] . ' ' . $_SESSION['lastname'] ?>">
                         <p class="item__username"><?= $_SESSION['username'] ?></p>
                     </div>
                 </button>
-                <ul class="item__menu close" id='display-menu'>
+                <ul class="item__menu" id='display-menu'>
                     <div class="menu__tip"></div>
                     <li class="menu__greeting">
                         <p class="greeting_head"><?= $greetings[rand(0, 11)] ?>,</p>
@@ -72,6 +69,8 @@ $greetings = [
             </li>
 
         <?php endif; ?>
-
+        <li class="nav__list-item item__account"><a class="item__link" href="<?= urlroot . '/user/profile/'; ?>">Mi cuenta</a></li>
     </ul>
+    <li class="nav__list-item icon__burger" onclick="document.getElementById('nav__display').classList.toggle('active');"></i></li>
 </nav>
+

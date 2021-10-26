@@ -34,7 +34,7 @@ require_once approot . '/Config/google_credentials.php';
                         <span class="error-message" id="user__msg"><?= isset($data["usernameOrEmailError"]) ? $data["usernameOrEmailError"] : ""; ?></span>
                     </div>
                     <div class="input-group <?= empty($data['passwordError']) ? "" : "form__error"; ?>" id="passwordUser__group">
-                        <input type="password" name="passwordUser" id="passwordUser" class="form-control" autocomplete="off">
+                        <input type="password" name="passwordUser" id="password" class="form-control" autocomplete="off">
                         <label for="passwordUser" class="floating-label">Contraseña</label>
                         <i class="far fa-eye-slash" id="pw-icon"></i>
                         <span class="error-message" id="passwordUser__msg"><?= isset($data["passwordError"]) ? $data["passwordError"] : "" ?></span>

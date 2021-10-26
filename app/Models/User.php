@@ -122,6 +122,19 @@ class User{
         }
     }
 
+    public function updateAvatar($data){
+        $this->db->query('UPDATE users SET avatar = :avatar WHERE id = :userId');
+        
+        $this->db->bind(':avatar', $data['avatar']);
+        $this->db->bind(':userId', $data['userId']);
+
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function findAllUser(){
         $this->db->query('SELECT * FROM users');
 

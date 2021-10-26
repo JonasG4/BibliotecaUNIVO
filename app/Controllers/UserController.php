@@ -4,6 +4,7 @@ class UserController extends Controller{
     public function __construct()
     {
         $this->userModel = $this->model("User");
+        $this->azureService = $this->model("BlobService");
     }
 
     public function Profile(){
@@ -19,19 +20,65 @@ class UserController extends Controller{
             'lastname' => $userInfo->lastname,
             'username' => $userInfo->username,
             'email' => $userInfo->email,
-            'avatar' => $userInfo->avatar
+            'avatar' => $userInfo->avatar,
+            'idUser'=> $_SESSION['user_id']
         ];
 
 
         $this->view('Users/profile', $data);
     }
 
-    public function actualizarInfo($data){
+    public function updateSession($data){
         $_SESSION['name'] = $data['name'];
         $_SESSION['lastname'] = $data['lastname'];
         $_SESSION['username'] = $data['username'];
         $_SESSION['email'] = $data['email'];
     }
+
+    public function updateAvaterSession($avatar){
+        $_SESSION['avatar'] = $avatar;
+    }
+
+    public function uploadUserPhoto(){
+        $data = [
+            'title' => 'Actualizar avatar',
+            'file'=> ''
+        ]; 
+        
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        
+        //Extraer extension
+         $extension = new SplFileInfo($_FILES['userPhoto']['name']); 
+         $extension = $extension->getExtension();
+         
+         //Cadena con valores aleatorios
+         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+         $randomName = substr(str_shuffle($permitted_chars), 0, 30); 
+        
+         //Renombrando archivo
+         $renameFile = $_SESSION['username'] . '_' . $randomName . '.' .$extension;
+         $img = $_FILES['userPhoto'];
+         $img['name'] = $renameFile;
+         
+         $data =[
+             'avatar' => $renameFile,
+             'userId' => $_SESSION['user_id']
+         ];
+            if(!empty($img['tmp_name'])){
+                $this->azureService->upload($img);
+                
+                $this->userModel->updateAvatar($data);
+                $this->updateAvaterSession($data['avatar']);
+
+                header('location: ' . urlroot . '/user/profile/');  
+                }else{
+                    echo 'No se puedo subir';
+                }
+            }
+
+        $this->view('Users/changeUserPhoto', $data);
+    }
+
 
     public function Edit(){
         $data = [
@@ -82,7 +129,7 @@ class UserController extends Controller{
               $isUpdated = $this->userModel->updateUser($data);
 
               if($isUpdated){
-               $this->actualizarInfo($data);
+               $this->updateSession($data);
                   header('location: ' . urlroot . '/user/profile');
               }else{
                   die('Ha ocurrido un problama con la consulta');
@@ -161,6 +208,3 @@ class UserController extends Controller{
             $this->view('Users/changePassword', $data);     
     }
 }
-
-
-?>

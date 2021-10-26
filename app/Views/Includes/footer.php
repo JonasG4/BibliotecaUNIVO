@@ -32,7 +32,7 @@
         </div>
     </section>
     <section class="footer__logo">
-        <img class="logo__img" src="<?= urlroot . '/public/img/logoBlanco2.png' ?>" alt="Logo_ohara">
+        <img class="logo__img" src="<?= urlroot . '/public/img/logoOhara.png' ?>" alt="Logo_ohara">
     </section>
     <section class="footer__pages">
 
@@ -40,4 +40,5 @@
 
     <div class="copyright">copyright</div>
 </footer>
+<script src="<?= urlroot . '/public/js/displayMenu.js?v=' . time() ; ?>"></script>
 
