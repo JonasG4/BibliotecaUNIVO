@@ -24,6 +24,12 @@ $greetings = [
         <li class="nav__list-item"><a class="item__link" href="">Categorias</a></li>
         <li class="nav__list-item"><a class="item__link" href="">Catalogo</a></li>
         <li class="nav__list-item"><a class="item__link" href="">Buscar</a></li>
+        <li class="nav__list-item">
+        <a class="nav-link car" href="<?=urlroot ."/Productos/mostrarCarro";?>"><i style="font-size: 25px; position:relative;" class="fas fa-shopping-cart "></i><span class="number-cart"><?php 
+            echo (empty($_SESSION['CARRITO'])) ? 0 : count($_SESSION['CARRITO']);
+          ?></span></a>
+        </li>
+
         <?php
         if (isLoggedIn()) : ?>
             <li class="nav__list-item">

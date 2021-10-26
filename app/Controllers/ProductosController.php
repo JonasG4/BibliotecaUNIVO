@@ -58,8 +58,7 @@
             }else {
               $idProductos = array_column($_SESSION['CARRITO'],"id");
               if(in_array($data['id'],$idProductos)){
-                echo "<script>alert('El producto ya ha sido seleccionado')</script>";
-                 $data['mensaje'] = "";
+                 $data['mensaje'] = "El producto ya ha sido seleccionado";
               }else {
                 $numeroProductos = count($_SESSION['CARRITO']);
                 $producto = array(

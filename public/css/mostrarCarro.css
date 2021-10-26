@@ -1,7 +1,101 @@
+.btn-links {
+  text-align: center;
+  background-color: var(--text-color-head);
+  color: white;
+  margin: 10px 0;
+}
+
+.number-cart {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: #429648;
+  padding-top: 3px;
+  padding-left: 1px;
+  border-radius: 50%;
+  position: absolute;
+  margin-left: 0px;
+  text-align: center;
+  top: 3px;
+  color: white;
+  font-size: 16px;
+}
+.car {
+  color: white;
+}
+
+.car:hover {
+  color: #429648;
+}
+.container-item {
+  width: 100%;
+}
+
+.item-card {
+  display: flex;
+  margin: 16px;
+  flex-shrink: 1;
+}
+.row-card {
+  display: flex;
+  margin: 20px
+}
+.item-card__body {
+  width: 330px;
+  border: none;
+  padding: 17px;
+  background: #222b45;
+  color: white;
+  border-radius: 6px;
+  box-shadow: -2px 5px 5px -3px rgba(0,0,0,0.69);
+  -webkit-box-shadow: -2px 5px 5px -3px rgba(0,0,0,0.69);
+  -moz-box-shadow: -2px 5px 5px -3px rgba(0,0,0,0.69);
+}
+
+.title-book {
+  margin-bottom: 5px;
+}
+
+.line-book {
+  display: inline-block;
+  border: 1px solid #418f46;
+  width: 100%;
+  height: 1px;
+}
+
+.card-text {
+  margin: 10px 0;
+}
+
+.card-price {
+  margin-bottom: 10px;
+}
+
+.btn-addcar {
+  padding: 12px;
+  background: var(--text-color-head);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-weight: bold;
+  width: 100%;
+  font-size: 16px;
+}
+
+.btn-addcar:hover {
+  background: #429648;
+}
 .title-car {
   text-align: center;
   color: var( --txt-color-p);
   margin: 16px 0;
+  text-decoration: underline;
+}
+
+.title-car:hover {
+  color: #3c8644;
 }
 
 .title-table,tr{
@@ -23,18 +117,24 @@
 }
 
 .email-container {
-  margin-left: 25px;
-  width: 40%;
+  margin-left: 50px;
+  width: 30%;
+  padding: 15px;
 }
 
 .btn-pagar {
   width: 100%;
   background-color: var(--text-color-head);
   color: white;
-  margin-top: 15px;
+  margin-top: 20px;
   box-shadow: -2px 5px 5px -3px rgba(0,0,0,0.69);
   -webkit-box-shadow: -2px 5px 5px -3px rgba(0,0,0,0.69);
   -moz-box-shadow: -2px 5px 5px -3px rgba(0,0,0,0.69);
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  letter-spacing: 1px;
 }
 .btn-pagar:hover {
   color: white;
@@ -44,13 +144,122 @@
   font-size: 25px;
 }
 
+.email-container {
+  padding: 0;
+}
 .email-input {
   border: 1px solid rgb(189, 186, 186);
   display: block;
-  padding: 8px;
   width: 100%;
+  padding: 10px;
+  margin: 15px 0;
 }
 
 .email-input:focus {
   outline: none;
 }
+
+.message-car {
+  width: 100%;
+  background-color: var(--text-color-head);
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.table-products {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+.table-products th, td {
+  border: 1px solid rgb(126, 123, 123);
+  padding: 20px;
+
+}
+
+.list-products {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-delete {
+  padding: 12px;
+  background: var(--color-error);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-weight: bold;
+  width: 100%;
+  font-size: 16px;
+}
+
+.btn-delete:hover {
+  background-color: #ce3545;
+}
+
+.thead {
+  background-color: #222b45;
+  color: white;
+}
+
+.btn-links {
+  padding: 12px;
+  background: var(--text-color-head);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-weight: bold;
+  width: 100%;
+  font-size: 16px;
+}
+
+.btn-links__hover:hover {
+  color: white;
+  background-color: #3c8644;
+}
+
+.container-links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.message-send {
+  margin-bottom: 10px;
+}
+
+.message-confirm {
+  margin: 10px 0;
+}
+
+.cart-number {
+  margin-top: 20px;
+  width: 17%;
+  background-color: #3c8644;
+  padding: 10px;
+  color: white;
+}
+
+@media(max-width: 800px) {
+  .row-card {
+    flex-direction: column;
+    align-items: center;
+  }
+  .list-products {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .email-container {
+    margin-top: 20px;
+  }
+}
+
