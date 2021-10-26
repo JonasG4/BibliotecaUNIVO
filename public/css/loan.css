@@ -141,6 +141,83 @@
     cursor: pointer;
 }
 
+.form__loan{
+    width: 100%;
+}
+.form__group{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input__group{
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input__control{
+    width: 350px;
+    padding: 5px;
+    border:none;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #838383;
+}
+
+.btn__loan{
+    padding: 6px 20px;
+    align-self: flex-end;
+    border-radius: 5px;
+    border: 1px solid #0275d8;
+    background-color: var(--txt-color-lighblue);
+    color: var(--bg-color-light);
+    cursor: pointer;
+}
+
+
+.books__filters{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:5px
+}
+
+.container__books{
+    display: flex;
+    gap: 30px;
+    border-bottom: 1px solid var(--txt-color-secondary);
+    padding-bottom: 10px;
+}
+
+.book__cover{
+    width: 100px;
+}
+
+.book__details{
+    display: flex;
+    flex-flow: column;
+    /* gap: 5px; */
+}
+
+.book__title{
+    font-size: 1.5rem;
+}
+
+.book__autor{
+    font-size: 0.7rem;
+    color: var(--txt-color-secondary);
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.book__sinopsis{
+    color: #252623;   
+    font-size: 0.9rem;
+}
+
+
 @media screen and (max-width: 1100px) {
     .container {
         margin-top: 50px;

@@ -5,6 +5,30 @@
             $this->genreModel = $this->model('Genres');
             $this->publisherModel = $this->model('Publishers');
         }
+
+        public function filterBook(){
+           $table="";
+           $obj = $this->bookModel->filterByTitile($_POST['books']);
+            
+           if($obj-> rowCount() > 0){
+               foreach ($obj as $value) {
+                   $table.=
+                   '<div class="container__books">
+                   <img src="'. $value->Book_Cover.'" alt="" class="book__cover">
+                   <div class="book__details">
+                   <h1 class="book__title">$value->'.$value->Book_Title.'</h1>
+                   <h3 class="book__autor">'.$value->Book_Id_Genre.'</h3>
+                   <p class="book__sinopsis"> 
+                   '.$value->Book_Synopsis.'
+                   </p>
+                   </div>
+                   </div>
+                   ';
+                }
+            }
+
+             echo json_decode($table);
+        }
         
         public function Index(){
             $Books = $this->bookModel->Get();
@@ -297,5 +321,6 @@
                 $this->view('Book/index', $data);
             }
         }
+
     }
 ?>

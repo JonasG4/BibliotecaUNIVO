@@ -105,4 +105,5 @@ require_once approot . '/Views/Includes/head.php';
             </form>
         </section>
     </main>
+    <?php require_once approot . '/Views/Includes/footer.php';?>
 </body>

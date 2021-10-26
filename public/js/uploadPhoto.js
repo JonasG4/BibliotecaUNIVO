@@ -6,7 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", function(e){
         e.preventDefault();
-        uploadFile(this).then(window.location.href= redirecto);
+        uploadFile(this)
+        setTimeout(() => {
+            window.location.href = redirecto
+        }, 500);
     })
 })
 
@@ -16,10 +19,10 @@ function uploadFile(form){
         btn_cancel = document.getElementById('cancelar');
 
     //Peticion
-    let request = new XMLHttpRequest();
+    let request = new XMLHttpRequest(); //AJAX
 
     //Progreso
-    request.upload.addEventListener("progress", function (e){
+    request.upload.addEventListener("progress", (e) =>{
             let percent = Math.round((e.loaded / e.total) * 100);
             console.log(percent);
 
