@@ -10,9 +10,9 @@
     </header>
     <main role="main">
         <section class="Section">
-            <div class="Main__Head">
-                <h1>Nueva Editorial</h1>
-                <a class="Main__Link bg-Secondary" href="<?= urlroot . '/Publisher/' ; ?>">
+            <div class="Section__Head">
+                <h1>Añadir Editorial</h1>
+                <a class="Main__Link" href="<?= urlroot . '/Publisher/' ; ?>">
                     <i class="fas fa-arrow-left"></i>
                     Regresar
                 </a> 
@@ -25,19 +25,21 @@
                         <?= isset($data['Name_Error']) ? $data['Name_Error'] : ''; ?>
                     </span>
                 </div>
-                <div class="Main__Form-Group">
-                    <label for="Origin_Country">País de origen: </label>
-                    <input type="text" name="Origin_Country" id="Origin_Country" placeholder="Escribe aquí el país de origen">
-                    <span>
-                        <?= isset($data['Country_Error']) ? $data['Country_Error'] : ''; ?>
-                    </span>
-                </div>
-                <div class="Main__Form-Group">
-                    <label for="Phone_Number">Número telefónico: </label>
-                    <input type="phone" name="Phone_Number" id="Phone_Number" placeholder="Escribe aquí el número telefónico">
-                    <span>
-                        <?= isset($data['Phone_Error']) ? $data['Phone_Error'] : ''; ?>
-                    </span>
+                <div class="Main__Form-Row">
+                    <div class="Main__Form-Group">
+                        <label for="Origin_Country">País de origen: </label>
+                        <input type="text" name="Origin_Country" id="Origin_Country" placeholder="Escribe el país de origen">
+                        <span>
+                            <?= isset($data['Country_Error']) ? $data['Country_Error'] : ''; ?>
+                        </span>
+                    </div>
+                    <div class="Main__Form-Group">
+                        <label for="Phone_Number">Número telefónico: </label>
+                        <input type="phone" name="Phone_Number" id="Phone_Number" placeholder="Escribe el número telefónico">
+                        <span>
+                            <?= isset($data['Phone_Error']) ? $data['Phone_Error'] : ''; ?>
+                        </span>
+                    </div>
                 </div>
                 <button type="submit" class="Main__Button Main__Button-Save">
                     <i class="fas fa-save"></i>
