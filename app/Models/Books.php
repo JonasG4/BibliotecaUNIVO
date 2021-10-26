@@ -33,14 +33,12 @@
             
             if(!empty($Book)){
                 return $Book;
-            }else{
-                die('No fue posible obtener el registro');
             }
         }
 
         //Crear un nuevo libro
         public function Create($data){
-            $this->db->query('INSERT INTO Books(ISBN, Book_Title, Book_Synopsis, Book_Edition, Number_Pages, Publication_Date, Book_Cover, Id_Genre, Id_Publisher) VALUES (:ISBN, :Book_Title, :Book_Synopsis, :Book_Edition, :Number_Pages, :Publication_Date, :Book_Cover, :Id_Genre, :Id_Publisher)');
+            $this->db->query('INSERT INTO Books(ISBN, Book_Title, Book_Synopsis, Book_Edition, Number_Pages, Publication_Date, Id_Genre, Id_Publisher) VALUES (:ISBN, :Book_Title, :Book_Synopsis, :Book_Edition, :Number_Pages, :Publication_Date, :Id_Genre, :Id_Publisher)');
 
             $this->db->bind(':ISBN', $data['ISBN']);
             $this->db->bind(':Book_Title', $data['Book_Title']);
@@ -48,7 +46,6 @@
             $this->db->bind(':Book_Edition', $data['Book_Edition']);
             $this->db->bind(':Number_Pages', $data['Number_Pages']);
             $this->db->bind(':Publication_Date', $data['Publication_Date']);
-            $this->db->bind(':Book_Cover', $data['Book_Cover']);
             $this->db->bind(':Id_Genre', $data['Id_Genre']);
             $this->db->bind(':Id_Publisher', $data['Id_Publisher']);
 

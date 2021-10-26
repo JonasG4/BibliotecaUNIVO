@@ -37,10 +37,9 @@
             $this->db->query('SELECT Id_Genre, Genre_Name, Genre_Description FROM Genres WHERE Genre_Name = :Genre_Name');
             $this->db->bind(':Genre_Name', $Genre_Name);
 
-            if($this->db->rowCount() > 0){
-                return true;
-            }else{
-                return false;
+            $Genre = $this->db->single();
+            if(!$Genre){
+                return $Genre;
             }
         }
 
