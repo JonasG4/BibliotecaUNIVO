@@ -1,23 +1,30 @@
 /*Scroll bar*/
-.Main__Card-Body, html {
+.Section__Card-Body, html {
     overflow: auto;
 }
-.Main__Card-Body::-webkit-scrollbar, html::-webkit-scrollbar{
+.Section__Card-Body::-webkit-scrollbar, html::-webkit-scrollbar{
     appearance: none;
 }
-.Main__Card-Body::-webkit-scrollbar:vertical, html::-webkit-scrollbar:vertical{
+.Section__Card-Body::-webkit-scrollbar:vertical, html::-webkit-scrollbar:vertical{
     width: 10px;
 }
-.Main__Card-Body::-webkit-scrollbar:horizontal, html::-webkit-scrollbar:horizontal{
+.Section__Card-Body::-webkit-scrollbar:horizontal, html::-webkit-scrollbar:horizontal{
     width: 10px;
 }
-.Main__Card-Body::-webkit-scrollbar-button:increment, .Main__Card-Body::-webkit-scrollbar-button, .html::-webkit-scrollbar-button:increment, .html::-webkit-scrollbar-button{
+.Section__Card-Body::-webkit-scrollbar-button:increment, .Section__Card-Body::-webkit-scrollbar-button, .html::-webkit-scrollbar-button:increment, .html::-webkit-scrollbar-button{
     display: none;
 }
-.Main__Card-Body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
+.Section__Card-Body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
     background-color: var(--bg-alternative);
     border-radius: 1.2em;
     border: 0.15em solid #e6e6e6;
+}
+.Container-Secondary{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    padding: 1em;
+    width: 100%;
 }
 .Section{
     display: flex;
@@ -40,29 +47,31 @@
 .bg-Secondary:hover{
     background-color: var(--bg-light-secondary);
 }
-.Main__Notify-Alert{
+
+.Section__Notify-Alert{
     background-color: var(--color-error);
     color: #fff;
     text-align: center;
     padding: 1em;
-    width: 100%;
+    margin-top: 1em;
+    width: 80%;
 }
-/*Cabezera del Main*/
-.Main__Head{
+/*Cabezera del Section*/
+.Section__Head{
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 4em;
     width: 100%;
 }
-.Main__Head h1{
+.Section__Head h1{
     color: #666666;
-    font-size: 2.5em;
+    font-size: 3em;
 }
-.Main__Link{
+.Section__Link{
     display: inline-block;
+    background-color: #418f46;
     color: #fff;
-    border: none;
     border-radius: 0.2em;
     text-decoration: none;
     text-align: center;
@@ -71,77 +80,193 @@
     height: 2.5em;
     width: 25%;
 }
+.Section__Link:hover{
+    background-color: #61b866;
+}
+
 /*Tarjetas*/
 
-.Main__Card{
-    background-color: #e6e6e6;
-    border: 0.05em solid #333333;
-    border-radius: 0.2em;
-    margin-top: 1em;
-    width: 50%;
+.Section__Card-Primary{
+    position: relative;
+    flex-grow: 1;
+    margin: 1.5em;
+    height: 30em;
+    max-height: 30em;
+    width: 20em;
+    max-width: 25em;
+    box-shadow: 0 0 7px 7px #cccccc;
+    border-top: 1em solid var(--bg-front-color);
 }
-
-.Main__Card-Head{
+.Card-Primary__Main-Image{
     display: flex;
-    justify-content: space-between;
-    color: var(--text-color-head);
-    padding: 1em;
+    justify-content: center;
+    align-items: center;
+    height: 7em;
     width: 100%;
 }
-.Main__Card-Head h2:nth-child(2){
-    font-size: 1em;
-    color: #333333;
+.Card-Primary__Main-Image .Main__Image-Img{
+    width: 20%;
+    max-width: 40%;
 }
-.Small-Text{
-    font-size: 1.05em;
+.Card-Primary__Main-Content{
+    width: 100%;
+    height: 100%;
+    max-height: 20em;
+}
+.Section__Card-Primary .Card-Primary__Card-Head{
+    padding: 0.7em;
+    max-height: 7em;
+    width: 100%;
+}
+.Card-Primary__Head-Text h2{
     color: var(--text-color-head);
-    margin-right: 0.5em;
 }
-.Main__Head-Text{
-    width: 16em;
+.Card-Primary__Head-Text h2:nth-child(2){
+    color: #000;
+    font-size: 0.8em;
 }
-.Main__Buttons-Container{
+.Text{
+    font-size: 1.2em;
+    color: var(--text-color-head);
+    margin-right: 1em;
+}
+.Section__Card-Primary .Card-Primary__Buttons-Container{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+.Section__Card-Primary .Card-Primary__Buttons-Container a i{
+    font-size: 1.5em;
+    color: #404040;
+    transition: color 0.3s;
+    margin-left: 1em;
+}
+.Card-Primary__Buttons-Container a .Button-Update:hover{
+    color: #ff6600;
+}
+.Card-Primary__Buttons-Container a .Button-Delete:hover{
+    color: #b30059;
+}
+.Card-Primary__Card-Body{
+    position: relative;
+    height: 100%;
+    max-height: 13.5em;
+    width: 100%;
+}
+.Card-Primary__Body-Focus{
+    padding: 1em;
+    height: 100%;
+    max-height: 60%;
+    width: 100%;
+}
+.Card-Primary__Body-Focus p{
+    color: #404040;
+}
+.Card-Primary__Body-Footer{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    background-color: #d9d9d9;
+    padding: 0.5em;
+    width: 100%;
+}
+.Card-Primary__Pill{
+    background-color: var(--bg-front-color);
+    color: #fff;
+    border-radius: 1em;
+    font-size: 0.7em;
+    padding: 0.4em;
+}
+.Card-Primary__Card-Footer{
+    position: absolute;
+    bottom: 0;
+    padding: 0.5em;
+    width: 100%;
+    background-color: #418f46;
+}
+.Card-Primary__Card-Footer p{
+    color: #fff;
+    font-size: 0.8em;
+    text-align: right;
+}
+.Span-Text-Secondary{
+    color: #000;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+
+.Section__Card-Secondary{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e6e6e6;
+    box-shadow: 0 0 5px 2px #cccccc;
+    border-left: 1em solid var(--bg-front-color);
+    border-radius: 0.15em;
+    margin-top: 1em;
+    height: 10em;
+    min-height: 10em;
+    width: 90%;
+}
+.Card-Secondary__Main-Image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+    height: 100%;
+    width: 25%;
+}
+.Card-Secondary__Main-Image .Main__Image-Img{
+    object-fit: cover;
+    max-width: 50%;
+}
+.Card-Secondary__Main-Content{
+    position: relative;
+    height: 100%;
+    width: 75%;
+}
+.Section__Card-Secondary .Card-Secondary__Card-Head{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7em;
+    width: 100%;
+}
+
+.Card-Secondary__Head-Text h2{
+    color: var(--text-color-head);
+}
+.Section__Card-Secondary .Card-Secondary__Buttons-Container{
     display: flex;
     justify-content: space-between;
     width: 4em;
 }
-.Main__Buttons-Container a i{
-    font-size: 1.5em;
+.Section__Card-Secondary .Card-Secondary__Buttons-Container a i{
+    font-size: 1.2em;
     color: #404040;
     transition: color 0.3s;
 }
-.Main__Buttons-Container a .Button-Update:hover{
+.Card-Secondary__Buttons-Container a .Button-Update:hover{
     color: #ff6600;
 }
-.Main__Buttons-Container a .Button-Delete:hover{
-    color: #cc0066;
+.Card-Secondary__Buttons-Container a .Button-Delete:hover{
+    color: #b30059;
 }
-.Main__Card-Body{
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    flex-flow: column nowrap;
-    height: 8em;
+.Section__Card-Secondary .Card-Secondary__Card-Body{
+    height: 4.5em;
     width: 100%;
 }
-.Main__Body-Focus{
+.Section__Card-Secondary .Card-Secondary__Body-Focus{
     font-size: 0.8em;
-    padding: 1em;
+    padding: 0.5em;
+    height: 100%;
 }
-.Main__Body-Focus p{
-    color: #4d4d4d;
+.Section__Card-Secondary .Card-Secondary__Body-Focus p{
+    color: #595959;
     font-weight: bold;
 }
-.Main__Body-Footer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #d9d9d9;
-    bottom: 5%;
-    padding: 0.5em;
-    width: 100%;
-}
-.Main__Body-Footer .Main__Pill{
+.Card-Secondary__Body-Footer .Section__Pill{
     border-radius: 0.5em;
     background-color: var(--bg-secondary);
     color: #fff;
@@ -149,23 +274,21 @@
     height: 2.4em;
     padding: 0.5em;
 }
-.Main__Card-Footer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.Section__Card-Secondary .Card-Secondary__Card-Footer{
+    position: absolute;
+    bottom: 0;
     background-color: #1a1a1a;
     padding: 0.5em;
-    height: 3em;
     width: 100%;
 }
-.Main__Card-Footer p{
+.Card-Secondary__Card-Footer p{
     color: #fff;
-    text-align: right;
     font-size: 0.8em;
+    text-align: right;
 }
-.Main__Card-Footer .Main__Span-Text{
-    color: var(--color-success);
-    font-size: 1.2em;
+.Span-Text{
+    color: var(--text-color-head);
+    font-size: 1em;
     font-weight: bold;
 }
 
@@ -174,7 +297,12 @@
     border: 0.1em solid #d9d9d9;
     border-radius: 0.2em;
     padding: 1em;
-    width: 40%;
+    width: 50%;
+}
+.Main__Form-Row{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
 }
 .Main__Form .Main__Form-Group{
     display: inline-block;
@@ -184,23 +312,24 @@
     display: block;
     color: #808080;
     font-size: 0.9em;
-}
+} 
 .Main__Form-Group input, select, textarea{
     display: block;
-    color: #1a1a1a;
     border: none;
     outline: none;
     box-shadow: 0 0 0 0.01em #999999;
     margin: 0.5em 0 0.1em 0;
-    padding: 0.5em;
+    padding: 0.7em;
     width: 100%;
 }
 .Main__Form-Group textarea{
     resize: none;
-
 }
 .Main__Form-Group input:focus, textarea:focus{
-    box-shadow: 0 0 0.1em 0.08em #00e673;
+    box-shadow: 0 0 0.1em 0.1em var(--bg-front-color);
+}
+.Main__Form-Group input[type='number']::-webkit-inner-spin-button, .Main__Form-Group input[type='number']::-webkit-outer-spin-button{
+    appearance: none;
 }
 .Main__Form .Main__Button{
     display: block;
@@ -215,12 +344,44 @@
     height: 1em;
 }
 .Main__Button-Save{
-    background-color: #00b386;
-    color: #fff;
+    background-color: var(--bg-front-color);
+    color: #00b386;
     transition: background-color 0.5s;
     margin-top: 1em;
 }
 .Main__Button-Save:hover{
-    background-color: #00cc99;
+    background-color: #3b4a78;
     cursor: pointer;
+}
+.Main__Link{
+    display: inline-block;
+    background-color: #e91640;
+    color: #fff;
+    border-radius: 0.2em;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.5s;
+    padding: 0.5em;
+    height: 2.5em;
+    width: 25%;
+}
+.Main__Link:hover{
+    background-color: #f05c79;
+}
+
+.Title{
+    color: var(--bg-front-color);
+}
+
+@media(min-width: 781px){
+    .Main__Form{
+        width: 40%;
+    }
+    .Main__Form .Main__Form-Row{
+        flex-flow: row nowrap;
+    }
+    .Main__Form-Group{
+        width: 45%;
+        margin-right: 0.5em;
+    }
 }

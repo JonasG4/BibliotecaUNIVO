@@ -16,13 +16,6 @@
     --color-error: #dc3545;
     --primary-color: #0275d8;
     
-    /*Botones*/
-    --bg-primary: #303d69;
-    --bg-light-primary: #485c9d;
-    --bg-secondary: #e05260;
-    --bg-light-secondary: #e87d88;
-    --bg-alternative: #489d4e;
-
     /* Hover colors */
     --text-color-head: #50ac56;
     --text-color-head-secondary: #418f46;
@@ -182,7 +175,7 @@ grid-template-columns: 1fr 1000px 1fr;
 }
 
 .item__menu.close{
-    animation: displayUp 0.3s ease-in-out ;    
+    opacity: 0; 
     pointer-events: none;
 }
 

@@ -25,8 +25,6 @@
             $Author = $this->db->single();
             if(!empty($Author)){
                 return $Author;
-            }else{
-                die('No fue posible obtener el registro');
             }
         }
 
