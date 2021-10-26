@@ -53,8 +53,8 @@ url.addEventListener('click', function(){
   }
 })
 url.classList.remove('btn-links__hover');
+url.style.cursor = "no-drop"
 url.disabled = true;
-
 });
 
 </script>

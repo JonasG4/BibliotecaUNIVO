@@ -35,7 +35,7 @@ require_once approot . '/Views/Includes/head.php';
       </div>
     </div>
   <?php } ?>   
-    </div>
+  </div>
 </div>  
 </body>
 </html>

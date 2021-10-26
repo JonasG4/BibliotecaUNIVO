@@ -248,3 +248,18 @@
   color: white;
 }
 
+@media(max-width: 800px) {
+  .row-card {
+    flex-direction: column;
+    align-items: center;
+  }
+  .list-products {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .email-container {
+    margin-top: 20px;
+  }
+}
+
