@@ -1,7 +1,7 @@
 
 .auth-container{
     width: 100%;
-    height: inherit;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -239,4 +239,28 @@
     color: var(--color-error);
     font-weight: 500;
     text-align: left;
+}
+
+
+/* APAPTACION PARA MOVILES */
+
+@media screen and (max-width: 599px) {
+    
+    .sgn-container{
+        width: 90%;
+        backdrop-filter: none;
+    }
+
+    .sgn-container .form-group{
+        width: 100%;
+        flex-flow: column;
+        height: auto;
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+
+    .error-message{
+        font-size: 12px;
+    }
+    
 }

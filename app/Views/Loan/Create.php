@@ -1,11 +1,25 @@
 <?php
-$TiempoMax = date('Y') . '-' . (int)(date('m') + 1) . '-' . date('d');
-?>
+$style = 'loan.css';
+require_once approot . '/Views/Includes/head.php' ?>
 
-<?php foreach ($data['loan'] as $value) : ?>
-    <h1><?= $value->title?></h1>
-    <h1><?= $value->username?></h1>
-    <h1><?= $value->duration?></h1>
-    <h1><?= $value->check_out_date?></h1>
-    <h1><?= $value->return_date?></h1>
-    <?php endforeach; ?>
+<body>
+    <header>
+        <?php require_once approot . '/Views/Includes/navbar.php' ?>        
+    </header>
+    <main class="container">
+        <div class="content__loan">
+            <div class="content__title">
+                <h3>Solicitar nuevo prestamo</h3>
+            </div>
+            <div class="content__body">
+                <form action="" method="POST">
+                    <input type="text" name="libro">
+                    <input type="date" name="fecha">
+                </form>
+            </div>
+        </div>
+    </main>
+    <?php require_once approot . '/Views/Includes/footer.php'; ?>
+
+</body>
+

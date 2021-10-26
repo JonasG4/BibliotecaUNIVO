@@ -68,9 +68,9 @@ class Loan {
     }
 
     public function findAllLoan(){
-        $this->db->query('SELECT  A.loan_id, A.duration, A.check_out_date, A.return_date, A.status, B.username, C.title FROM loan A
+        $this->db->query('SELECT  A.loan_id, A.duration, A.check_out_date, A.return_date, A.status, B.username, C.Book_Title FROM loan A
         INNER JOIN users B ON A.user_id = B.id 
-        INNER JOIN books C ON A.book_id = C.book_id');
+        INNER JOIN books C ON A.book_id = C.Id_Book');
 
         if($obj = $this->db->resultSet()){
             return $obj;
