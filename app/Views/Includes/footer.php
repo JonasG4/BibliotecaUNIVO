@@ -35,7 +35,23 @@
         <img class="logo__img" src="<?= urlroot . '/public/img/logoOhara.png' ?>" alt="Logo_ohara">
     </section>
     <section class="footer__pages">
-
+            <div class="pages__books">
+                <a href="" class="pages__title">Libros</a>
+                <a href="" class="pages__link">Autores</a>
+                <a href="" class="pages__link">Categorias</a>
+                <a href="" class="pages__link">Ver libros</a>
+            </div>
+            <div class="pages__user">
+                <a href="" class="pages__title">Usuario</a>
+                <a href="" class="pages__link">Perfil</a>
+                <a href="" class="pages__link">Mis prestamos</a>
+                <a href="" class="pages__link">Mis libros</a>
+            </div>
+            <div class="pages__request">
+                <a href="" class="pages__title">Carrito</a>
+                <a href="" class="pages__link">Ver carrito</a>
+                
+            </div>
     </section>
 
     <div class="copyright">copyright</div>

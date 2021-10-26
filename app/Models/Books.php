@@ -89,5 +89,12 @@
                 return false;
             }
         }
+
+
+        public function filterByTitile($string){
+            $this->db->query("SELECT * FROM books WHERE Book_Title LIKE '%".$string."%'");
+     
+            return $this->db->resultSet();
+        }
     }
 ?>

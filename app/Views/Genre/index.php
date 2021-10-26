@@ -1,5 +1,5 @@
 <?php
-if (!isset($_SESSION['user_id'])) {
+if (!isLoggedIn()) {
     header('location: ' . urlroot . "/auth/login");
 }
 require_once approot . '/Views/Includes/head.php';
@@ -61,4 +61,5 @@ require_once approot . '/Views/Includes/head.php';
             ?>
         </section>
     </main>
+    <?php require_once approot . '/Views/Includes/footer.php';?>
 </body>

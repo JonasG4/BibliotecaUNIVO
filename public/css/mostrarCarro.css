@@ -1,32 +1,3 @@
-.btn-links {
-  text-align: center;
-  background-color: var(--text-color-head);
-  color: white;
-  margin: 10px 0;
-}
-
-.number-cart {
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  background-color: #429648;
-  padding-top: 3px;
-  padding-left: 1px;
-  border-radius: 50%;
-  position: absolute;
-  margin-left: 0px;
-  text-align: center;
-  top: 3px;
-  color: white;
-  font-size: 16px;
-}
-.car {
-  color: white;
-}
-
-.car:hover {
-  color: #429648;
-}
 .container-item {
   width: 100%;
 }

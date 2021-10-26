@@ -68,6 +68,9 @@ class UserController extends Controller{
                 $this->azureService->upload($img);
                 
                 $this->userModel->updateAvatar($data);
+                
+                $this->azureService->delete($_SESSION['avatar']);
+
                 $this->updateAvaterSession($data['avatar']);
 
                 header('location: ' . urlroot . '/user/profile/');  
