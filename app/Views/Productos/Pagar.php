@@ -25,7 +25,9 @@ require_once approot . '/Views/Includes/head.php';
     unset( $_SESSION["CARRITO"] );  
     ?>
   </div>
+
 </div>
+<?php require_once approot . '/Views/Includes/footer.php'; ?>
 <script>
 let redirect = false;
 let url = document.querySelector(".fire")

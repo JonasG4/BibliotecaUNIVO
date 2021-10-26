@@ -60,4 +60,5 @@ require_once approot . '/Views/Includes/head.php';
         No hay productos en el carrito.
       </div>
     <?php } ?>
+    <?php require_once approot . '/Views/Includes/footer.php'; ?>
   </div>

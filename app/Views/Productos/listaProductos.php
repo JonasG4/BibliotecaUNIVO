@@ -37,5 +37,6 @@ require_once approot . '/Views/Includes/head.php';
   <?php } ?>   
   </div>
 </div>  
+<?php require_once approot . '/Views/Includes/footer.php'; ?>
 </body>
 </html>
