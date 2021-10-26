@@ -1,29 +1,25 @@
 <?php 
-
+$style = "mostrarCarro.css";
 require_once approot . '/Views/Includes/navbar.php';
 require_once approot . '/Views/Includes/head.php';
-
 ?>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<link rel="stylesheet" href="<?= urlroot ?>/public/css/mostrarCarro.css?v=<?php echo time(); ?>">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
   <script defer src="<?= urlroot ?>/public/js/alertDelete.js?v=<?php echo time(); ?>"></script>
 </head>
-<h3 class="title-car">Mi Carrito</h3>
+<h2 class="title-car">Mi Carrito</h2>
   <?php if(!empty($_SESSION['CARRITO'])) { ?>
    
-  <div class="container lista-productos">
+  <div class=" list-products">
 
-    <table class="table table-light table-bordered">
+    <table class="table-products">
     
       <tbody>
-        <tr class="title-table">
+        <tr class="title-table thead">
           <th width="40%">Descripción</th>
           <th width="15%" class="text-center">Cantidad</th>
           <th width="20%" class="text-center">Precio</th>
-          <th width="25%" class="text-center">Total</th>
+          <th width="20%" colspan="2" class="text-center">Total</th>
+        
         </tr>
         <?php $total = 0 ?>
         <?php foreach($_SESSION['CARRITO'] as $indice =>$producto) { ?>
@@ -35,7 +31,7 @@ require_once approot . '/Views/Includes/head.php';
           <td width="5%">
           <form action="" method="POST">
             <input type="hidden" name="id" value="<?php echo openssl_encrypt($producto['id'],COD,KEY); ?>">
-            <button class="btn btn-eliminar" id="delete" name="btn-action" value="Eliminar" type="submit">Eliminar</button></td>
+            <button class="btn btn-delete" id="delete" name="btn-action" value="Eliminar" type="submit">Eliminar</button></td>
           </form>
         </tr>
         <?php $total = $total + ($producto['precio'] * $producto['cantidad']); ?>
@@ -60,11 +56,8 @@ require_once approot . '/Views/Includes/head.php';
           </form>
 
     <?php }else{ ?>
-      <div class="container">
-      <div class="alert alert-success">
+      <div class="message-car">
         No hay productos en el carrito.
       </div>
-      </div>
-      
     <?php } ?>
   </div>
