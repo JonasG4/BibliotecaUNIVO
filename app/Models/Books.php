@@ -22,7 +22,7 @@
 
         //recuperar un registro por Id
         public function GetId($Id){
-            $this->db->query('SELECT A.Id_Book, A.ISBN, A.Book_Title, A.Book_Synopsis, A.Book_Edition, A.Number_Pages, A.Publication_Date, A.Publication_Date, A.Book_Cover, B.Id_Genre, B.Genre_Name, C.Id_Publisher, C.Publisher_Name
+            $this->db->query('SELECT A.Id_Book, A.ISBN, A.Book_Title, A.Book_Synopsis, A.Book_Cover, A.Book_Edition, A.Number_Pages, A.Publication_Date, A.Publication_Date, A.Book_Cover, B.Id_Genre, B.Genre_Name, C.Id_Publisher, C.Publisher_Name
             FROM Books A 
             INNER JOIN Genres B ON A.Id_Genre = B.Id_Genre
             INNER JOIN Publishers C ON A.Id_Publisher = C.Id_Publisher WHERE Id_Book = :Id');
@@ -38,11 +38,13 @@
 
         //Crear un nuevo libro
         public function Create($data){
-            $this->db->query('INSERT INTO Books(ISBN, Book_Title, Book_Synopsis, Book_Edition, Number_Pages, Publication_Date, Id_Genre, Id_Publisher) VALUES (:ISBN, :Book_Title, :Book_Synopsis, :Book_Edition, :Number_Pages, :Publication_Date, :Id_Genre, :Id_Publisher)');
+            $this->db->query('INSERT INTO Books(Id_Book, ISBN, Book_Title, Book_Synopsis, Book_Cover, Book_Edition, Number_Pages, Publication_Date, Id_Genre, Id_Publisher) VALUES (:Id_Book, :ISBN, :Book_Title, :Book_Synopsis, :Book_Cover,:Book_Edition, :Number_Pages, :Publication_Date, :Id_Genre, :Id_Publisher);');
 
+            $this->db->bind(':Id_Book', $data['Id_Book']);
             $this->db->bind(':ISBN', $data['ISBN']);
             $this->db->bind(':Book_Title', $data['Book_Title']);
             $this->db->bind(':Book_Synopsis', $data['Book_Synopsis']);
+            $this->db->bind(':Book_Cover', $data['Book_Cover']);
             $this->db->bind(':Book_Edition', $data['Book_Edition']);
             $this->db->bind(':Number_Pages', $data['Number_Pages']);
             $this->db->bind(':Publication_Date', $data['Publication_Date']);
@@ -55,10 +57,11 @@
                 return false;
             }
         }
+        
 
         //Actualizar un registro por Id, utilizando un array
         public function Update($data){
-            $this->db->query('UPDATE Books SET ISBN = :ISBN, Book_Title = :Book_Title, Book_Synopsis = :Book_Synopsis, Book_Edition = :Book_Edition, Number_Pages = :Number_Pages, Publication_Date = :Publication_Date, Id_Genre = :Id_Genre, Id_Publisher = :Id_Publisher WHERE Id_Book = :Id'); 
+            $this->db->query('UPDATE Books SET ISBN = :ISBN, Book_Title = :Book_Title, Book_Synopsis = :Book_Synopsis, Book_Edition = :Book_Edition, Number_Pages = :Number_Pages, Publication_Date = :Publication_Date, Id_Genre = :Id_Genre, Id_Publisher = :Id_Publisher WHERE Id_Book = :Id;');
 
             $this->db->bind(':Id', $data['Id_Book']);
             $this->db->bind(':ISBN', $data['ISBN']);

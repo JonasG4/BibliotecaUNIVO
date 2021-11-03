@@ -4,8 +4,8 @@ require_once approot . '/Views/auth/google/vendor/autoload.php';
 //Credenciales de GOOGLE
 $clientId = "543388865862-vv8q46fdu4i5fearlfff5dl6jr5e1al8.apps.googleusercontent.com";
 $clientSecret = "YdmYfR0HYc8-g_FkA9f_u-3c";
-$redirectUrlRegister = "http://localhost/Biblioteca/auth/gregister";
-$redirectUrlLogin = "http://localhost/Biblioteca/auth/glogin";
+$redirectUrlRegister = "http://localhost/Biblioteca/auth/register";
+$redirectUrlLogin = "http://localhost/Biblioteca/auth/login";
 
 //Creando la peticion cliente a google
 
@@ -20,7 +20,6 @@ $client->addScope('email');
 
 //Luego de la autenticacion, redirigirá al Login de usuario
 $urlLogin = $client->createAuthUrl();
-
 
 //Para el registro con Google
 $clienteR = new Google_Client();

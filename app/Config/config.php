@@ -1,9 +1,14 @@
 <?php
-
 //Parametros de BD
-define("db_host", "127.0.0.1");
-define("db_user", "root");
-define("db_pass","");
+
+define("db_host", "servidormysql2.mysql.database.azure.com");
+define("db_user", "JonasG4@servidormysql2");
+define("db_pass","Jonasgarcia8");
+//Offline
+// define("db_host", "localhost");
+// define("db_user", "root");
+// define("db_pass","");
+
 define("db_name","db_siab");
 
 //???
@@ -14,7 +19,7 @@ define("COD","AES-128-ECB");
 define("approot", dirname(dirname(__FILE__)));
 
 //Ruta dinamica
-define("urlroot", "https://ohara-siab.azurewebsites.net"); 
+define("urlroot", "http://localhost/Biblioteca"); 
 
 //Nombre del sitio
 define("sitename", "Biblioteca");

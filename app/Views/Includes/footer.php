@@ -37,19 +37,19 @@
     <section class="footer__pages">
             <div class="pages__books">
                 <a href="" class="pages__title">Libros</a>
-                <a href="" class="pages__link">Autores</a>
-                <a href="" class="pages__link">Categorias</a>
-                <a href="" class="pages__link">Ver libros</a>
+                <a href="<?= urlroot . '/genre/' ?>" class="pages__link">Categorias</a>
+                <a href="<?= urlroot . '/book/' ?>" class="pages__link">Ver libros</a>
+                <a href="<?= urlroot . '/author/' ?>" class="pages__link">Autores</a>
             </div>
             <div class="pages__user">
                 <a href="" class="pages__title">Usuario</a>
-                <a href="" class="pages__link">Perfil</a>
-                <a href="" class="pages__link">Mis prestamos</a>
-                <a href="" class="pages__link">Mis libros</a>
+                <a href="<?= urlroot . '/loan/' ?>" class="pages__link">Mis prestamos</a>
+                <a href="<?= urlroot . '/book/' ?>" class="pages__link">Mis libros</a>
+                <a href="<?= urlroot . '/user/profile' ?>" class="pages__link">Perfil</a>
             </div>
             <div class="pages__request">
                 <a href="" class="pages__title">Carrito</a>
-                <a href="" class="pages__link">Ver carrito</a>
+                <a href="<?= urlroot . '/Productos/mostrarCarro' ?>" class="pages__link">Ver carrito</a>
                 
             </div>
     </section>
