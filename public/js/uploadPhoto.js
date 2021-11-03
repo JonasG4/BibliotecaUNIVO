@@ -7,9 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", function(e){
         e.preventDefault();
         uploadFile(this)
-        setTimeout(() => {
-            window.location.href = redirecto
-        }, 500);
     })
 })
 
@@ -33,7 +30,7 @@ function uploadFile(form){
         //Finalizado
         request.addEventListener('load', () =>{
             progress_bar.classList.add('upload_complete');
-            span.innerHTML = "Progreso completado";
+            span.innerHTML = "Subida completada";
         })
         console.log(form)
         

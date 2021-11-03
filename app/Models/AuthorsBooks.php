@@ -54,9 +54,8 @@
 
         //Actualizar registro por Id, utilizando un array
         public function Update($data){
-            $this->db->query('UPDATE AuthorsBooks SET Id_Author = :Id_Author, Id_Book = :Id_Book WHERE Id_AuthorBook = :Id');
+            $this->db->query('UPDATE AuthorsBooks SET Id_Author = :Id_Author WHERE Id_Book = :Id_Book');
 
-            $this->db->bind(':Id', $data['Id_AuthorBook']);
             $this->db->bind(':Id_Author', $data['Id_Author']);
             $this->db->bind(':Id_Book', $data['Id_Book']);
 
@@ -79,5 +78,17 @@
                 return false;
             }
         }
+
+       public function GetAuthorByIdBook($Id){
+           $this->db->query('SELECT Id_Author From AuthorsBooks WHERE Id_Book = :Id_Book');
+
+           $this->db->bind(':Id_Book', $Id);
+
+          if($result = $this->db->single()){
+                return $result;
+          }else{
+              return false;
+          }
+       }
     }
 ?>

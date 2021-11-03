@@ -1,0 +1,117 @@
+.content__details {
+    background: #ededee;
+    grid-column: 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    backdrop-filter: blur(40px);
+    border: solid 2px transparent;
+    background-clip: padding-box;
+    box-shadow: 10px 10px 15px rgba(94, 218, 102, .08);
+}
+
+.content__title{
+    width: 100%;
+    background: var(--bg-primary);
+    border-radius: 5px 5px 0 0;
+    padding: 10px 50px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.content__body{
+    padding: 20px 50px;
+    /* background: #303d6909; */
+}
+
+.Book{
+    display: flex;
+    gap: 30px;
+    max-width: 100%;
+}
+.Book__Cover-img{
+    max-width: 300px;
+    max-height: 350px;
+}
+
+.Book__Info{
+    display: flex;
+    flex-direction: column;
+}
+
+.Book__Title{
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.Book__Subtitles{
+    display: flex;
+    font-size: 0.7rem;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    color: var(--txt-color-secondary);
+    row-gap: 10px;
+    column-gap: 30px;
+    margin-bottom: 20px;
+}
+
+.Book__Author,
+.Book__Edition,
+.Book__Genre,
+.Book__Publisher,
+.Publication__Date
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Book__Synopsis{
+    text-align: justify;
+}
+
+.Book_Action{
+    display: flex;
+    gap: 10px;
+    flex-flow: column;
+}
+
+.btn__loan,
+.btn__buy{
+    padding:5px 15px;
+    border-radius: 5px;
+    width: 100%;
+    border: none;
+    height: 30px;
+    cursor: pointer;
+    outline: none;
+    font-weight: 400;
+}
+
+.btn__buy{
+    background: var(--bg-primary);
+    color: var(--txt-color-light);
+    border: 1px solid transparent;
+    box-shadow: 5px 5px 10px rgba(23, 162, 184, 0.08);
+    backdrop-filter: blur(40px);
+}
+
+.btn__loan{
+    background: transparent;
+    border: 1px solid var(--bg-primary);
+    color: var(--bg-primary);
+}
+
+.btn__buy:hover{
+    background: var(--bg-light-primary);
+}
+.btn__loan:hover{
+    border: 1px solid var(--bg-light-primary);
+    color: var(--bg-light-primary);
+}

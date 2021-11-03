@@ -18,9 +18,8 @@ require_once approot . '/Views/Includes/head.php';
                     Regresar
                 </a>
             </div>
-            <form action="" method="POST" autocomplete="off" class="Main__Form">
+            <form action="" method="POST" autocomplete="off" class="Main__Form" enctype="multipart/form-data">
                 <div class="Main__Form-Row">
-
                     <div class="Main__Form-Group">
                         <label for="ISBN">ISBN: </label>
                         <input type="text" name="ISBN" id="ISBN" placeholder="Ingrese un ISBN válido">
@@ -28,11 +27,26 @@ require_once approot . '/Views/Includes/head.php';
                             <?= isset($data['ISBN_Error']) ? $data['ISBN_Error'] : ''; ?>
                         </span>
                     </div>
+                </div>
+                <div class="Main__Form-Row">
                     <div class="Main__Form-Group">
                         <label for="Book_Title">Título del libro: </label>
                         <input type="text" name="Book_Title" id="Book_Title" placeholder="Escribe el título del libro">
                         <span>
                             <?= isset($data['Title_Error']) ? $data['Title_Error'] : ''; ?>
+                        </span>
+                    </div>
+                    <div class="Main__Form-Group">
+                        <label for="Id_Author">Autor del libro: </label>
+                        <select name="Id_Author" id="Id_Author">
+                            <option selected>----Selecciona un Autor----</option>
+                            <?php
+                            foreach ($data['Authors'] as $Author)
+                                echo "<option value='{$Author->Id_Author}'>{$Author->First_Name} {$Author->Last_Name}</option>";
+                            ?>
+                        </select>
+                        <span>
+                            <?= isset($data['Author_Error']) ? $data['Author_Error'] : ''; ?>
                         </span>
                     </div>
                 </div>
@@ -98,6 +112,15 @@ require_once approot . '/Views/Includes/head.php';
                         </span>
                     </div>
                 </div>
+                <div class="Main__Form-row">
+                    <div class="Main__Form-Group">
+                        <label for="Book_Cover">Seleccione portada</label>
+                        <input type="file" name="Book_Cover" id="Book_Cover" accept="images/*">
+                    </div>
+                    <span>
+                        <?= isset($data['Cover_Error']) ? $data['Cover_Error'] : ''; ?>
+                    </span>
+                </div>
                 <button type="submit" class="Main__Button Main__Button-Save">
                     <i class="fas fa-save"></i>
                     Guardar
@@ -105,5 +128,5 @@ require_once approot . '/Views/Includes/head.php';
             </form>
         </section>
     </main>
-    <?php require_once approot . '/Views/Includes/footer.php';?>
+    <?php require_once approot . '/Views/Includes/footer.php'; ?>
 </body>

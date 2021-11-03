@@ -49,7 +49,7 @@
                     'Error' => ''
                 ];
 
-                $Words_Validation = "/^[a-zA-Z ]*$/i";
+                $Words_Validation = '/^([a-z ñáéíóú]{2,255})$/i';
 
                 //Validación de Nombre
                 if(empty($data['Genre_Name'])){
@@ -116,7 +116,7 @@
 
                         $Search_Result = $this->genreModel->Find_Genre_Name($data['Genre_Name']);
 
-                        $Words_Validation = "/^[a-zA-Z ]*$/i";
+                        $Words_Validation = '/^([a-z ñáéíóú]{2,255})$/i';
                         //Validación de Nombre
                         if(empty($data['Genre_Name'])){
                             $data['Name_Error'] = 'Por favor, ingrese el nombre del género.';

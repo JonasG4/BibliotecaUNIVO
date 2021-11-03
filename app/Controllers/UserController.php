@@ -69,8 +69,10 @@ class UserController extends Controller{
                 
                 $this->userModel->updateAvatar($data);
                 
-                $this->azureService->delete($_SESSION['avatar']);
-
+                if(!$_SESSION['avatar'] == 'avatarDefault.png'){
+                    $this->azureService->delete($_SESSION['avatar']);
+                }
+                
                 $this->updateAvaterSession($data['avatar']);
 
                 header('location: ' . urlroot . '/user/profile/');  

@@ -31,7 +31,7 @@ require_once approot . '/Views/Includes/head.php';
                     ?>
                         <div class="Section__Card-Primary">
                             <div class="Card-Primary__Main-Image">
-                                <img src="https://cdn-icons-png.flaticon.com/512/732/732397.png" alt="Imagen por defecto" class="Main__Image-Img">
+                                <img src="<?= imagenurl . $Book->Book_Cover ?>" alt="Imagen por defecto" class="Main__Image-Img">
                             </div>
                             <div class="Card-Primary__Main-Content">
                                 <div class="Card-Primary__Card-Head">

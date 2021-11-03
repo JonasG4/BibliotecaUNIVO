@@ -3,7 +3,10 @@
         public function __construct() {
             $this->bookModel = $this->model('Books');
             $this->genreModel = $this->model('Genres');
+            $this->authorModel = $this->model('Authors');
             $this->publisherModel = $this->model('Publishers');
+            $this->authorsBookModel = $this->model('AuthorsBooks');
+            $this->azureService = $this->model('BlobService');
         }
 
         public function filterBook(){
@@ -54,17 +57,22 @@
         public function Create(){
             $Genres = $this->genreModel->Get();
             $Publishers = $this->publisherModel->Get();
-            if(!empty($Genres) && !empty($Publishers)){    
+            $Authors = $this->authorModel->Get();
+
+            if(!empty($Genres) && !empty($Publishers) && !empty($Authors)){    
                 $data = [
                     'Title' => 'Añadir libro',
                     'Genres' => $Genres,
                     'Publishers' => $Publishers,
+                    'Authors' => $Authors,
                     'ISBN' => '',
                     'ISBN_Error' => '',
                     'Book_Title' => '',
                     'Title_Error' => '',
                     'Book_Synopsis' => '',
                     'Synopsis_Error' => '',
+                    'Book_Cover' => '',
+                    'Cover_Error' => '',
                     'Book_Edition' => '',
                     'Edition_Error' => '',
                     'Number_Pages' => '',
@@ -80,17 +88,22 @@
     
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-    
+                    
+                    $Book_Cover = $_FILES['Book_Cover'];
                     $data = [
                         'Title' => 'Añadir libro',
                         'Genres' => $Genres,
                         'Publishers' => $Publishers,
+                        'Authors' => $Authors,
+                        'Id_Book' => '',
                         'ISBN' => trim($_POST['ISBN']),
                         'ISBN_Error' => '',
                         'Book_Title' => trim($_POST['Book_Title']),
                         'Title_Error' => '',
                         'Book_Synopsis' => trim($_POST['Book_Synopsis']),
                         'Synopsis_Error' => '',
+                        'Book_Cover' => '',
+                        'Cover_Error' => '',
                         'Book_Edition' => (integer)trim($_POST['Book_Edition']),
                         'Edition_Error' => '',
                         'Number_Pages' => (integer)trim($_POST['Number_Pages']),
@@ -101,6 +114,8 @@
                         'Genre_Error' => '',
                         'Id_Publisher' => (integer)trim($_POST['Id_Publisher']),
                         'Publisher_Error' => '',
+                        'Id_Author' => (integer)trim($_POST['Id_Author']),
+                        'Author_Error' => '',
                         'Error' => ''
                     ]; 
 
@@ -149,9 +164,39 @@
                     if($data['Id_Publisher'] == 0 || !is_int($data['Id_Publisher']) || empty($data['Id_Publisher'])){
                         $data['Publisher_Error'] = 'Identificador inválido';
                     }
+                    
+                    //Validación de la Autor
+                    if($data['Id_Author'] == 0 || !is_int($data['Id_Author']) || empty($data['Id_Author'])){
+                        $data['Author_Error'] = 'Identificador inválido';
+                    }
+                    
+                    //Validacion para el campo portada
+                    if(empty($Book_Cover)){
+                        $data['Cover_Error'] = 'Por favor, sube una portada para el libro';
+                    }
+                    
 
-                    if(empty($data['ISBN_Error']) && empty($data['Title_Error']) && empty($data['Synopsis_Error']) && empty($data['Edition_Error']) && empty($data['NumberPages_Error']) && empty($data['Date_Error']) && empty($data['Genre_Error']) && empty($data['Publisher_Error'])){
-                        if($this->bookModel->Create($data)){
+                    if(empty($data['ISBN_Error']) && empty($data['Title_Error']) && empty($data['Synopsis_Error']) && empty($data['Edition_Error']) && empty($data['NumberPages_Error']) && empty($data['Date_Error']) && empty($data['Genre_Error']) && empty($data['Publisher_Error']) && empty($data['Book_Error'])){
+
+                        //Extraer extension
+                        $extension = new SplFileInfo($_FILES['Book_Cover']['name']);
+                        $extension = $extension->getExtension();
+                        
+                        //Cadena con valores aleatorios
+                        $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+                        $generedId = substr(str_shuffle($permitted_chars), 0, 50);
+                        $randomName = substr(str_shuffle($permitted_chars), 0, 30);
+                        
+                        //Renombrando archivo
+                        $renameFile = str_replace(' ', '', $data['Book_Title']) . '_' . $randomName . '.' . $extension;
+                        $Book_Cover['name'] = $renameFile;
+                        //Aginando datos
+                        $data['Book_Cover'] = $Book_Cover['name'];
+                        $data['Id_Book'] = $generedId;
+                            //Crear Registro
+                            if($this->bookModel->Create($data) && $this->authorsBookModel->Create($data)){
+                                //Subir imagen
+                                $this->azureService->upload($Book_Cover);                            
                             header('location: ' . urlroot . '/Book/index');
                         }else{
                             $data['Error'] = 'No es posible añadir un nuevo libro.';
@@ -172,20 +217,24 @@
         }
 
         public function Update($Id){
-            $Id = (integer)$Id[0];
-            if($Id == 0 || !is_int($Id) || empty($Id)){
+            $Id = $Id[0];
+            if(empty($Id)){
                 $Error = 'Identificador inválido';
             }else{
                 $Book = $this->bookModel->GetId($Id);
                 $Genres = $this->genreModel->Get();
                 $Publishers = $this->publisherModel->Get();
+                $Authors = $this->authorModel->Get();
+                $AuthorsBook = $this->authorsBookModel->Get();
     
-                if(!empty($Genres) && !empty($Publishers) && !empty($Book)){    
+                if(!empty($Genres) && !empty($Publishers) && !empty($Book) && !empty($Authors)){    
                     $data = [
                         'Title' => 'Actualizar libro',
                         'Book' => $Book,
                         'Genres' => $Genres,
                         'Publishers' => $Publishers,
+                        'Authors' => $Authors,
+                        'AuthorsBook' => $AuthorsBook,
                         'ISBN' => '',
                         'ISBN_Error' => '',
                         'Book_Title' => '',
@@ -203,6 +252,8 @@
                         'Genre_Error' => '',
                         'Id_Publisher' => '',
                         'Publisher_Error' => '',
+                        'Id_Author' => '',
+                        'Author_Error' => '',
                         'Error' => ''
                     ];
         
@@ -210,10 +261,11 @@
                         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         
                         $data = [
-                            'Title' => 'Actualizar libro',
+                            'title' => 'Actualizar libro',
                             'Book' => $Book,
                             'Genres' => $Genres,
                             'Publishers' => $Publishers,
+                            'Authors' => $Authors,
                             'ISBN' => trim($_POST['ISBN']),
                             'ISBN_Error' => '',
                             'Book_Title' => trim($_POST['Book_Title']),
@@ -231,6 +283,8 @@
                             'Genre_Error' => '',
                             'Id_Publisher' => (integer)trim($_POST['Id_Publisher']),
                             'Publisher_Error' => '',
+                            'Id_Author' => (integer)trim($_POST['Id_Author']),
+                            'Author_Error' => '',
                             'Error' => ''
                         ]; 
     
@@ -280,8 +334,13 @@
                             $data['Publisher_Error'] = 'Identificador inválido';
                         }
     
-                        if(empty($data['ISBN_Error']) && empty($data['Title_Error']) && empty($data['Synopsis_Error']) && empty($data['Edition_Error']) && empty($data['NumberPages_Error']) && empty($data['Date_Error']) && empty($data['Genre_Error']) && empty($data['Publisher_Error'])){
-                            if($this->bookModel->Update($data)){
+                        //Validación de la editorial
+                        if($data['Id_Author'] == 0 || !is_int($data['Id_Author']) || empty($data['Id_Author'])){
+                            $data['Author_Error'] = 'Identificador inválido';
+                        }
+    
+                        if(empty($data['ISBN_Error']) && empty($data['Title_Error']) && empty($data['Synopsis_Error']) && empty($data['Edition_Error']) && empty($data['NumberPages_Error']) && empty($data['Date_Error']) && empty($data['Genre_Error']) && empty($data['Publisher_Error']) && empty($data['Author_Error'])){
+                            if($this->bookModel->Update($data) && $this->authorsBookModel->Update($data)){
                                 header('location: ' . urlroot . '/Book/index');
                             }else{
                                 $data['Error'] = 'No es posible actualizar un registro.';
@@ -303,8 +362,8 @@
         }
 
         public function Delete($Id){
-            $Id = (integer)$Id[0];
-            if($Id == 0 || !is_int($Id) || empty($Id)){
+            $Id = $Id[0];
+            if(empty($Id)){
                 $Error = 'Identificador inválido';
             }
             if($this->bookModel->Delete($Id)){
@@ -320,6 +379,32 @@
                     ];
                 $this->view('Book/index', $data);
             }
+        }
+
+        public function details($Id){
+            $Id = $Id[0];
+            if(empty($Id)){
+                $Error = 'Identificador inválido';
+            }
+
+            $book = $this->bookModel->GetId($Id);
+            $genre = $this->genreModel->GetId($book->Id_Genre);
+            $publisher = $this->publisherModel->GetId($book->Id_Publisher);
+
+            if($auxId = $this->authorsBookModel->GetAuthorByIdBook($Id)){
+                $author = $this->authorModel->GetId($auxId->Id_Author);
+            }
+            
+            $data = [
+                'title' => 'Detalles Libro',
+                'Book' => $book,
+                'Author' => $author,
+                'Publisher' => $publisher,
+                'Genre' => $genre 
+            ];
+
+            $this->view('Book/details', $data);
+            
         }
 
     }

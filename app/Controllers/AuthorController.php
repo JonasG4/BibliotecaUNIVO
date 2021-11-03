@@ -52,7 +52,7 @@
                     'Error' => ''
                 ];
 
-                $Words_Validation = '/^([a-z ñáéíóú]{2,60})$/i';
+                $Words_Validation = '/^([a-z ñáéíóú]{2,255})$/i';
                 
                 //Validación de Nombre
                 if(empty($data['First_Name'])){
@@ -127,7 +127,7 @@
                             'Error' => ''
                         ];
                         
-                        $Words_Validation = '/^([a-z ñáéíóú]{2,60})$/i';
+                        $Words_Validation = '/^([a-z ñáéíóú]{2,255})$/i';
                         
                         //Validación de Nombre
                         if(empty($data['First_Name'])){
