@@ -9,28 +9,49 @@
             $this->azureService = $this->model('BlobService');
         }
 
-        public function filterBook(){
-           $table="";
-           $obj = $this->bookModel->filterByTitile($_POST['books']);
+        public function search(){
+        //    $table="";
+        //    $obj = $this->bookModel->filterByTitile($_POST['books']);
             
-           if($obj-> rowCount() > 0){
-               foreach ($obj as $value) {
-                   $table.=
-                   '<div class="container__books">
-                   <img src="'. $value->Book_Cover.'" alt="" class="book__cover">
-                   <div class="book__details">
-                   <h1 class="book__title">$value->'.$value->Book_Title.'</h1>
-                   <h3 class="book__autor">'.$value->Book_Id_Genre.'</h3>
-                   <p class="book__sinopsis"> 
-                   '.$value->Book_Synopsis.'
-                   </p>
-                   </div>
-                   </div>
-                   ';
-                }
-            }
+        //    if($obj-> rowCount() > 0){
+        //        foreach ($obj as $value) {
+        //            $table.=
+        //            '<div class="container__books">
+        //            <img src="'. $value->Book_Cover.'" alt="" class="book__cover">
+        //            <div class="book__details">
+        //            <h1 class="book__title">$value->'.$value->Book_Title.'</h1>
+        //            <h3 class="book__autor">'.$value->Book_Id_Genre.'</h3>
+        //            <p class="book__sinopsis"> 
+        //            '.$value->Book_Synopsis.'
+        //            </p>
+        //            </div>
+        //            </div>
+        //            ';
+        //         }
+        //     }
 
-             echo json_decode($table);
+            //  echo json_decode($table);
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            header("Content-type: application/json; charset=utf-8");
+            $data = json_decode(file_get_contents("php://input"), true);
+
+            $data['criterio'];
+            $booksFiltered = $this->bookModel->filterByTitile($data['criterio']);
+            
+            $result = "";
+            foreach ($booksFiltered as $value):
+            $result .= '
+             <div class="container__data-book">
+                    <img src="'. imagenurl . $value->Book_Cover .'" alt="" class="data__book-img">
+                    <div class="data__book-info">
+                        <h3 class="data__book-title">'. $value->Book_Title . '</h3>
+                        <h5 class="data__book-author">'. $value->Book_Edition .'</h5>
+                    </div>
+                </div>';
+            endforeach;
+            echo json_encode($result);
+            }
+       
         }
         
         public function Index(){
@@ -381,7 +402,7 @@
             }
         }
 
-        public function details($Id){
+        public function Details($Id){
             $Id = $Id[0];
             if(empty($Id)){
                 $Error = 'Identificador inválido';
@@ -390,17 +411,21 @@
             $book = $this->bookModel->GetId($Id);
             $genre = $this->genreModel->GetId($book->Id_Genre);
             $publisher = $this->publisherModel->GetId($book->Id_Publisher);
-
+            
+            //Si existe la relacion libro-autor, se lleva acabo la consulta
             if($auxId = $this->authorsBookModel->GetAuthorByIdBook($Id)){
                 $author = $this->authorModel->GetId($auxId->Id_Author);
             }
+            
+            $recomendation = $this->bookModel->GetAllByGenre($book->Id_Genre);
             
             $data = [
                 'title' => 'Detalles Libro',
                 'Book' => $book,
                 'Author' => $author,
                 'Publisher' => $publisher,
-                'Genre' => $genre 
+                'Genre' => $genre,
+                'recomendations' => $recomendation 
             ];
 
             $this->view('Book/details', $data);

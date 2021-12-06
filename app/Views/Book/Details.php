@@ -11,7 +11,7 @@ require_once approot . '/Views/Includes/head.php';
         <section class="container">
             <div class="content__details">
                 <div class="content__title">
-                  Detalles
+                    Detalles
                 </div>
                 <div class="content__body">
                     <div class="Book">
@@ -72,17 +72,37 @@ require_once approot . '/Views/Includes/head.php';
                             </div>
                             <div class="Book__Synopsis">
                                 <h4>
-                                    Sinopsis
+                                    Sinopsis:
                                 </h4>
                                 <p>
                                     <?= $data['Book']->Book_Synopsis ?>
                                 </p>
                             </div>
-                        
-
 
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="content__recomendation">
+                <h4 class="content__recomendation-title">
+                    También te pueden interesar...
+                </h4>
+                <div class="content__recomendation-body">
+                    <?php foreach ($data['recomendations'] as $book) :
+                        if ($book->Id_Book != $data['Book']->Id_Book) :
+                    ?>
+
+                            <div class="recomendation__book">
+                                <div class="recomendation__book-cover">
+                                    <img src="<?= imagenurl . $book->Book_Cover ?>" alt="" class="recomendation__book-img">
+                                </div>
+                                <!-- <div class="recomendation__book-title">
+                                    <h4><?= $book->Book_Title ?></h4>
+                                </div> -->
+                            </div>
+                    <?php
+                        endif;
+                    endforeach; ?>
                 </div>
             </div>
             <div class="content">
@@ -93,3 +113,4 @@ require_once approot . '/Views/Includes/head.php';
 
     <?php require_once approot . '/Views/Includes/footer.php'; ?>
 </body>
+</html>

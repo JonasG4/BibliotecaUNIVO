@@ -95,9 +95,19 @@
 
 
         public function filterByTitile($string){
-            $this->db->query("SELECT * FROM books WHERE Book_Title LIKE '%".$string."%'");
+            $this->db->query("SELECT * FROM books WHERE Book_Title LIKE '%".$string."%'" );
      
             return $this->db->resultSet();
+        }
+
+        public function GetAllByGenre($Id_Genre){
+            $this->db->query('SELECT Id_Book, Book_Cover, Book_Title FROM Books WHERE Id_Genre = :Id_Genre');
+
+            $this->db->bind(':Id_Genre', $Id_Genre);
+
+            if($result = $this->db->resultSet()){
+                return $result;
+            }
         }
     }
 ?>

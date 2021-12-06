@@ -24,7 +24,7 @@ class BlobService {
         }
     }
 
-    public function allBlobs($container = 'imagenes'){
+    public function allBlobs($container = 'ohara-storage'){
         try{
             $result = $this->blobClient->listBlobs($container);
             return $result->getBlobs();
@@ -34,7 +34,7 @@ class BlobService {
         }
     }
 
-    public function upload($file, $container = 'imagenes'){
+    public function upload($file, $container = 'ohara-storage'){
         try {
             $content = file_get_contents($file['tmp_name']);
             $this->blobClient->createBlockBlob($container, $file['name'], $content);
@@ -44,7 +44,7 @@ class BlobService {
         }
     }
 
-    public function delete($blobName, $container = "imagenes"){
+    public function delete($blobName, $container = "ohara-storage"){
         try{
             $this->blobClient->deleteBlob($container, $blobName);
         }catch(ServiceException $exception){

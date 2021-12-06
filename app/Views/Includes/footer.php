@@ -56,5 +56,4 @@
 
     <div class="copyright">copyright</div>
 </footer>
-<script src="<?= urlroot . '/public/js/displayMenu.js?v=' . time() ; ?>"></script>
-
+<script src="<?= urlroot . '/public/js/navbar.js?v=' . time() ; ?>"></script>
