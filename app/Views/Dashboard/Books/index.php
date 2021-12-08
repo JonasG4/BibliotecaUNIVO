@@ -99,7 +99,9 @@ require_once approot . '/Views/Dashboard/Includes/navbar.php';
             </button>
         </form>
     </section>
-    
+    <section class="Section" id="UpdateForm">
+
+    </section>
     <section class="main__content">
 
         <div class="main__header">

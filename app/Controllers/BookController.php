@@ -269,7 +269,7 @@
                         'Author_Error' => '',
                         'Error' => ''
                     ];
-        
+                    echo json_encode($data);
                     if($_SERVER['REQUEST_METHOD'] == 'POST'){
                         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         
@@ -354,23 +354,21 @@
     
                         if(empty($data['ISBN_Error']) && empty($data['Title_Error']) && empty($data['Synopsis_Error']) && empty($data['Edition_Error']) && empty($data['NumberPages_Error']) && empty($data['Date_Error']) && empty($data['Genre_Error']) && empty($data['Publisher_Error']) && empty($data['Author_Error'])){
                             if($this->bookModel->Update($data) && $this->authorsBookModel->Update($data)){
-                                header('location: ' . urlroot . '/Book/index');
+                                echo json_encode($data);
                             }else{
                                 $data['Error'] = 'No es posible actualizar un registro.';
                             }
+                        }else{
+                            $data["ErrValidation"] = true;
+                            echo json_encode($data);
                         }
                     }
-                    $this->view('Book/Update', $data);
                 }else{
                 $Error = 'Antes un actualizar libro, debes de añadir un autor, género o libro.';
                 }
             }
             if(!empty($Error)){
-                $data = [
-                        'Books' => '',
-                        'Error' => $Error
-                    ];
-                $this->view('Book/index', $data);
+                echo json_encode("Error");
             }
         }
 

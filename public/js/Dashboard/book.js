@@ -12,6 +12,7 @@ function closeCreateForm(){
 let formCreate = document.getElementById("Book__Create");
 
 let url = document.getElementById("url").value;
+
 let imageurl = "https://oharasiab1.blob.core.windows.net/ohara-storage/";
 
 
@@ -96,40 +97,115 @@ async function actualizarLista(){
 
 }
 
+let updateForm = document.getElementById("UpdateForm");
+
+// let update__Form = document.getElementById("Book__Update");
+
+// updateForm.addEventListener("submit", function(e) {
+//     e.preventDefault();
+    
+//     let urlcreate =  url + "create";
+
+    
+//     let datos = new FormData(formCreate);
+
+//     console.log(datos);
+
+//     const response = await fetch(urlcreate, { 
+//         method: "POST",
+//         body: datos
+//         });
+        
+//         response.json()
+//         .then(data => {
+//             if(data['ErrValidation'] == true){
+//                 document.getElementById("ISBN_Error").innerHTML = data['ISBN_Error'];
+//                 document.getElementById("Title_Error").innerHTML = data["Title_Error"];
+//                 document.getElementById("Author_Error").innerHTML = data["Author_Error"]
+//                 document.getElementById("Synopsis_Error").innerHTML = data["Synopsis_Error"];
+//                 document.getElementById("Npages_Error").innerHTML = data["NumberPages_Error"];
+//                 document.getElementById("Edition_Error").innerHTML = data["Edition_Error"];
+//                 document.getElementById("Date_Error").innerHTML = data["Date_Error"];
+//                 document.getElementById("Genre_Error").innerHTML = data["Genre_Error"];
+//                 document.getElementById("Publisher_Error").innerHTML = data["Publisher_Error"];
+//                 document.getElementById("Cover_Error").innerHTML = data["Cover_Error"];
+//             }else{
+//                 document.getElementById("ISBN").value = "";
+//                 document.getElementById("Book_Title").value = "";
+//                 document.getElementById("Id_Author").value = "";
+//                 document.getElementById("Book_Synopsis").value = "";
+//                 document.getElementById("Number_Pages").value = "";
+//                 document.getElementById("Book_Edition").value = "";
+//                 document.getElementById("Publication_Date").value = "";
+//                 document.getElementById("Id_Genre").value = "";
+//                 document.getElementById("Id_Publisher").value = "";
+//                 document.getElementById("Book_Cover").value = "";
+
+//                 actualizarLista();
+//             }
+//         })
+// })
 
 async function editBook(id){
 
     let urlupdate = url + 'update/' + id;
 
-
     const response = await fetch(urlupdate, {
         method: 'GET',
     });
 
-    let modal = `
-    <section class="Section" id="UpdateForm">
+    response.json().then(data => {
+        console.log(data);
+
+    let auxAuthor = '';
+
+    data["Authors"].forEach(element => {
+        if(element["Id_Author"] == data["Book"]["Id_Author"]){
+            auxAuthor += `<option selected value="` + element['Id_Author'] + `">` + element["First_Name"] + ' ' + element["Last_Name"] + `</option>`;
+        }else{
+            auxAuthor += `<option value="` + element['Id_Author'] + `">` + element["First_Name"] + ' ' + element["Last_Name"] + `</option>`;
+        }
+    })
+
+    let auxGenre = "";
+    data["Genres"].forEach(element => {
+        if(element["Id_Genre"] == data["Book"]["Id_Genre"]){
+            auxGenre += `<option selected value="` + element['Id_Genre'] + `">` + element["Genre_Name"] + `</option>`;
+        }else{
+            auxGenre += `<option value="` + element['Id_Genre'] + `">` + element["Genre_Name"] +`</option>`;
+        }
+    }) 
+    
+    let auxPublisher = "";
+    data["Publishers"].forEach(element => {
+        if(element["Id_Publisher"] == data["Book"]["Id_Publisher"]){
+            auxPublisher += `<option selected value="` + element['Id_Publisher'] + `">` + element["Publisher_Name"] + `</option>`;
+        }else{
+            auxPublisher += `<option value="` + element['Id_Publisher'] + `">` + element["Publisher_Name"] +`</option>`;
+        }
+    }) 
+    
+    updateForm.innerHTML += `
     <form id="Book__Update" method="POST" autocomplete="off" class="Main__Form" enctype="multipart/form-data">
         <div class="Main__Form-Row">
             <div class="Main__Form-Group">
                 <label for="ISBN">ISBN: </label>
-                <input type="text" name="ISBN" id="ISBN" placeholder="Ingrese un ISBN válido" value="` +  +`">
+                <input type="text" name="ISBN" id="ISBN" placeholder="Ingrese un ISBN válido" value="`+data["Book"]["ISBN"]+`">
                 <span id="ISBN_Error"></span>
             </div>
-        < /div>
+        </div>
         <div class="Main__Form-Row">
             <div class="Main__Form-Group">
                 <label for="Book_Title">Título del libro: </label>
-                <input type="text" name="Book_Title" id="Book_Title" placeholder="Escribe el título del libro">
+                <input type="text" name="Book_Title" id="Book_Title" placeholder="Escribe el título del libro" value="`+data["Book"]["Book_Title"]+`">
                 <span id="Title_Error"></span>
             </div>
             <div class="Main__Form-Group">
                 <label for="Id_Author">Autor del libro: </label>
                 <select name="Id_Author" id="Id_Author" class="Input__Select">
-                    <option selected>----Selecciona un Autor----</option>
-                    <?php
-                    foreach ($data['Authors'] as $Author)
-                        echo "<option value='{$Author->Id_Author}'>{$Author->First_Name} {$Author->Last_Name}</option>";
-                    ?>
+                ` +
+                auxAuthor             
+                + `
                 </select>
                 <span id="Author_Error"></span>
             </div>
@@ -137,24 +213,24 @@ async function editBook(id){
 
         <div class="Main__Form-Group">
             <label for="Book_Synopsis">Añade una pequeña sinopsis: </label>
-            <textarea name="Book_Synopsis" id="Book_Synopsis"></textarea>
+            <textarea name="Book_Synopsis" id="Book_Synopsis">`+data["Book"]["Book_Synopsis"]+`</textarea>
             <span id="Synopsis_Error"></span>
         </div>
 
         <div class="Main__Form-Row">
             <div class="Main__Form-Group">
                 <label for="Number_Pages">Cantidad de páginas: </label>
-                <input type="number" name="Number_Pages" id="Number_Pages" placeholder="Escribe la cantidad de páginas">
+                <input type="number" name="Number_Pages" id="Number_Pages"  value="`+data["Book"]["Number_Pages"]+`" placeholder="Escribe la cantidad de páginas">
                 <span id="Npages_Error"></span>
             </div>
             <div class="Main__Form-Group">
                 <label for="Book_Edition">Edición del libro: </label>
-                <input type="number" name="Book_Edition" id="Book_Edition" placeholder="Añade la edición del libro">
+                <input type="number" name="Book_Edition" id="Book_Edition" value="`+data["Book"]["Book_Edition"]+`" placeholder="Añade la edición del libro">
                 <span id="Edition_Error"></span>
             </div>
             <div class="Main__Form-Group">
                 <label for="Publication_Date">Fecha de publicación: </label>
-                <input type="date" name="Publication_Date" id="Publication_Date">
+                <input type="date" name="Publication_Date" id="Publication_Date" value="`+data["Book"]["Publication_Date"]+`">
                 <span id="Date_Error"></span>
             </div>
         </div>
@@ -163,11 +239,7 @@ async function editBook(id){
             <div class="Main__Form-Group">
                 <label for="Id_Genre">Géneros: </label>
                 <select name="Id_Genre" id="Id_Genre" class="Input__Select">
-                    <option selected>----Selecciona un género----</option>
-                    <?php
-                    foreach ($data['Genre'] as $Genre)
-                        echo "<option value='{$Genre->Id_Genre}'>{$Genre->Genre_Name}</option>";
-                    ?>
+                   `+auxGenre+`
                 </select>
                 <span id="Genre_Error"></span>
 
@@ -175,12 +247,7 @@ async function editBook(id){
             <div class="Main__Form-Group">
                 <label for="Id_Publisher">Editoriales: </label>
                 <select name="Id_Publisher" id="Id_Publisher" class="Input__Select">
-                    <option selected>----Selecciona una editorial----</option>
-                    <?php
-                    foreach ($data['Publisher'] as $Publisher) {
-                        echo "<option value='{$Publisher->Id_Publisher}'>{$Publisher->Publisher_Name}</option>";
-                    }
-                    ?>
+                  `+auxPublisher+`
                 </select>
                 <span id="Publisher_Error"></span>
             </div>
@@ -194,17 +261,21 @@ async function editBook(id){
         </div>
         <button type="submit" class="Main__Button Main__Button-Save">
             <i class="fas fa-save"></i>
-            Guardar
+            Actualizar
         </button>
         <button onclick="closeCreateForm()" class="Main__Button Main__Button-Cancel">
             Cancelar
         </button>
     </form>
-</section>
-    `
-
+    `;
+    
+    updateForm.classList.add("active");
+})
 
 }
+
+
+
 
 async function deleteBook(id){
 
