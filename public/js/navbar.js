@@ -27,6 +27,7 @@ btn.onclick = () => {
 let searchInput = document.getElementById('searchInput');
 let resultContainer = document.getElementById('searchFilter');
 console.log(searchInput.value.length); 
+
 async function filter(url){
         if(searchInput.value.length > 0) {
         data = 
