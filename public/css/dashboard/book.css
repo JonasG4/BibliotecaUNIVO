@@ -178,6 +178,7 @@
 .btn__action{
     text-decoration: none;
     color: #0578dd;
+    cursor: pointer;
 }
 
 .counter {

@@ -4,7 +4,6 @@ if (!isLoggedIn()) {
 }
 require_once approot . '/Views/Includes/head.php';
 ?>
-
 <body>
     <main role="main">
         <header>
@@ -135,7 +134,6 @@ require_once approot . '/Views/Includes/head.php';
                             <?= isset($data['Publisher_Error']) ? $data['Publisher_Error'] : ''; ?>
                         </span>
                     </div>
-
                 </div>
                 <button type="submit" class="Main__Button Main__Button-Save">
                     <i class="fas fa-save"></i>
