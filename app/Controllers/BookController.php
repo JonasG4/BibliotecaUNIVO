@@ -380,17 +380,9 @@
                 $Error = 'Identificador inválido';
             }
             if($this->bookModel->Delete($Id)){
-                header('location: '. urlroot .'/Book/index');
+                echo json_encode("Eliminado exitosamente");
             }else{
-                $Error = 'No fue posible eliminar el registro.';
-            }
-            
-            if(!empty($Error)){
-                $data = [
-                        'Books' => '',
-                        'Error' => $Error
-                    ];
-                $this->view('Book/index', $data);
+                echo json_encode("Eliminado exitosamente");
             }
         }
 

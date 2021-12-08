@@ -6,7 +6,7 @@ require_once approot . '/Views/Dashboard/Includes/navbar.php';
 <main class="main">
     <input hidden id="url" value="<?= urlroot . '/book/' ?>">
     <section class="Section" id="CreateForm">
-        <form id="Book__Create" method="POST" autocomplete="off" class="Main__Form" enctype="multipart/form-data"> 
+        <form id="Book__Create" method="POST" autocomplete="off" class="Main__Form" enctype="multipart/form-data">
             <div class="Main__Form-Row">
                 <div class="Main__Form-Group">
                     <label for="ISBN">ISBN: </label>
@@ -99,107 +99,107 @@ require_once approot . '/Views/Dashboard/Includes/navbar.php';
             </button>
         </form>
     </section>
-
+    
     <section class="main__content">
 
-    <div class="main__header">
-        <h1 class="main__header-title">
-            <?= $data['title'] ?>
-        </h1>
-        <a onclick="showCreateForm()" class="main__header-link">Agregar Nuevo</a>
-    </div>
-    <div class="main__tools">
-        <div class="tools__row">
-            <div class="tools__col-1">
-                <p class="tool__tag">Todos<span class="tool__tag-count">(200)</span></p>
-                <span class="v__line"></span>
-                <p class="tool__tag">Fisicos<span class="tool__tag-count">(170)</span></p>
-                <span class="v__line"></span>
-                <p class="tool__tag">Digitales<span class="tool__tag-count">(30)</span></p>
+        <div class="main__header">
+            <h1 class="main__header-title">
+                <?= $data['title'] ?>
+            </h1>
+            <a onclick="showCreateForm()" class="main__header-link">Agregar Nuevo</a>
+        </div>
+        <div class="main__tools">
+            <div class="tools__row">
+                <div class="tools__col-1">
+                    <p class="tool__tag">Todos<span class="tool__tag-count">(200)</span></p>
+                    <span class="v__line"></span>
+                    <p class="tool__tag">Fisicos<span class="tool__tag-count">(170)</span></p>
+                    <span class="v__line"></span>
+                    <p class="tool__tag">Digitales<span class="tool__tag-count">(30)</span></p>
+                </div>
+                <div class="tools__col-2">
+                    <form action="">
+                        <input type="text" class="input__buscar" placeholder="Buscar un libro...">
+                        <button type="submit" class="btn__buscar"> Buscar</button>
+                    </form>
+                </div>
             </div>
-            <div class="tools__col-2">
-                <form action="">
-                    <input type="text" class="input__buscar" placeholder="Buscar un libro...">
-                    <button type="submit" class="btn__buscar"> Buscar</button>
+            <div class="tools__row">
+                <form action="" class="tool__filters">
+                    <select name="categoria" id="categoria" class="tool__filters-select">
+                        <option value="" selected>Todos los Años</option>
+                        <?php for ($min = 1900; $min <= date('Y'); $min++) : ?>
+                            <option value="<?= $min ?>"><?= $min ?></option>
+                        <?php endfor; ?>
+                    </select>
+                    <select name="" id="" class="tool__filters-select">
+                        <option value="" selected>Todas las Categorias</option>
+                        <?php foreach ($data['Genre'] as $categoria) : ?>
+                            <option value="<?= $categoria->Id_Genre ?>"> <?= $categoria->Genre_Name; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <select name="" id="" class="tool__filters-select">
+                        <option value="" selected>Todas las Editoriales</option>
+                        <?php foreach ($data['Publisher'] as $publisher) : ?>
+                            <option value="<?= $publisher->Id_Publisher ?>"> <?= $publisher->Publisher_Name ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <button class="btn__filter">Filtrar</button>
                 </form>
             </div>
         </div>
-        <div class="tools__row">
-            <form action="" class="tool__filters">
-                <select name="categoria" id="categoria" class="tool__filters-select">
-                    <option value="" selected>Todos los Años</option>
-                    <?php for ($min = 1900; $min <= date('Y'); $min++) : ?>
-                        <option value="<?= $min ?>"><?= $min ?></option>
-                    <?php endfor; ?>
-                </select>
-                <select name="" id="" class="tool__filters-select">
-                    <option value="" selected>Todas las Categorias</option>
-                    <?php foreach ($data['Genre'] as $categoria) : ?>
-                        <option value="<?= $categoria->Id_Genre ?>"> <?= $categoria->Genre_Name; ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <select name="" id="" class="tool__filters-select">
-                    <option value="" selected>Todas las Editoriales</option>
-                    <?php foreach ($data['Publisher'] as $publisher) : ?>
-                        <option value="<?= $publisher->Id_Publisher ?>"> <?= $publisher->Publisher_Name ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <button class="btn__filter">Filtrar</button>
-            </form>
-        </div>
-    </div>
-    <section class="mid__container">
-        <table class="table__books">
-            <thead>
-                <tr class="table__head-row">
-                    <th class="table__head-cell">Portada</th>
-                    <th class="table__head-cell">Título</th>
-                    <th class="table__head-cell">Descripción</th>
-                    <th class="table__head-cell">Autor</th>
-                    <th class="table__head-cell">Categoria</th>
-                    <th class="table__head-cell">Editorial</th>
-                    <th class="table__head-cell">Edición</th>
-                    <th class="table__head-cell">Número de paginas</th>
-                    <th class="table__head-cell">Fecha de publicación</th>
-                    <th class="table__head-cell">Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="formBody">
-                <?php foreach ($data['Books'] as $book) : ?>
-                    <tr class="table__body-row">
-                        <td class="table__body-cell"><img src="<?= imagenurl . $book->Book_Cover ?>" alt="" class="table__cover"></td>
-                        <td class="table__body-cell"><?= $book->Book_Title ?></td>
-                        <td class="table__body-cell"><?= $book->Book_Synopsis ?></td>
-                        <td class="table__body-cell"><?= $book->First_Name . " " . $book->Last_Name ?></td>
-                        <td class="table__body-cell"><?= $book->Genre_Name ?></td>
-                        <td class="table__body-cell"><?= $book->Publisher_Name ?></td>
-                        <td class="table__body-cell"><?= $book->Book_Edition ?></td>
-                        <td class="table__body-cell"><?= $book->Number_Pages ?></td>
-                        <td class="table__body-cell"><?= $book->Publication_Date ?></td>
-                        <td class="table__body-cell">
-                            <a href="" class="btn__action" onclick="edit(<?= $book->Id_Book?>)">Editar</a>
-                            <a href="" class="btn__action" onclick="edit(<?= $book->Id_Book?>)" id="btn_delete">Borrar</a>
-                        </td>
+        <section class="mid__container">
+            <table class="table__books">
+                <thead>
+                    <tr class="table__head-row">
+                        <th class="table__head-cell">Portada</th>
+                        <th class="table__head-cell">Título</th>
+                        <th class="table__head-cell">Descripción</th>
+                        <th class="table__head-cell">Autor</th>
+                        <th class="table__head-cell">Categoria</th>
+                        <th class="table__head-cell">Editorial</th>
+                        <th class="table__head-cell">Edición</th>
+                        <th class="table__head-cell">Número de paginas</th>
+                        <th class="table__head-cell">Fecha de publicación</th>
+                        <th class="table__head-cell">Acciones</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-            <thead>
-                <tr class="table__head-row">
-                    <th class="table__head-cell">Portada</th>
-                    <th class="table__head-cell">Título</th>
-                    <th class="table__head-cell">Descripción</th>
-                    <th class="table__head-cell">Autor</th>
-                    <th class="table__head-cell">Categoria</th>
-                    <th class="table__head-cell">Editorial</th>
-                    <th class="table__head-cell">Edición</th>
-                    <th class="table__head-cell">Número de paginas</th>
-                    <th class="table__head-cell">Fecha de publicación</th>
-                    <th class="table__head-cell">Acciones</th>
-                </tr>
-            </thead>
-        </table>
-    </section>
-    <p class="counter"> <?= count($data['Books']) ?> Libro(s) </p>
+                </thead>
+                <tbody id="formBody">
+                    <?php foreach ($data['Books'] as $book) : ?>
+                        <tr class="table__body-row">
+                            <td class="table__body-cell"><img src="<?= imagenurl . $book->Book_Cover ?>" alt="" class="table__cover"></td>
+                            <td class="table__body-cell"><?= $book->Book_Title ?></td>
+                            <td class="table__body-cell"><?= $book->Book_Synopsis ?></td>
+                            <td class="table__body-cell"><?= $book->First_Name . " " . $book->Last_Name ?></td>
+                            <td class="table__body-cell"><?= $book->Genre_Name ?></td>
+                            <td class="table__body-cell"><?= $book->Publisher_Name ?></td>
+                            <td class="table__body-cell"><?= $book->Book_Edition ?></td>
+                            <td class="table__body-cell"><?= $book->Number_Pages ?></td>
+                            <td class="table__body-cell"><?= $book->Publication_Date ?></td>
+                            <td class="table__body-cell">
+                                <a class="btn__action" onclick="editBook('<?= $book->Id_Book ?>')">Editar</a>
+                                <a class="btn__action" onclick="deleteBook('<?= $book->Id_Book ?>')">Borrar</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+                <thead>
+                    <tr class="table__head-row">
+                        <th class="table__head-cell">Portada</th>
+                        <th class="table__head-cell">Título</th>
+                        <th class="table__head-cell">Descripción</th>
+                        <th class="table__head-cell">Autor</th>
+                        <th class="table__head-cell">Categoria</th>
+                        <th class="table__head-cell">Editorial</th>
+                        <th class="table__head-cell">Edición</th>
+                        <th class="table__head-cell">Número de paginas</th>
+                        <th class="table__head-cell">Fecha de publicación</th>
+                        <th class="table__head-cell">Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </section>
+        <p class="counter"> <?= count($data['Books']) ?> Libro(s) </p>
     </section>
 
 </main>

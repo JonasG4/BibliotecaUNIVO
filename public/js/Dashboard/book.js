@@ -86,12 +86,140 @@ async function actualizarLista(){
                         <td class="table__body-cell">`+ element['Number_Pages']+`</td>
                         <td class="table__body-cell">`+ element['Publication_Date']+`</td>
                         <td class="table__body-cell">
-                            <a href="" onclick="edit(`+ element['Book_Id']+`)">Editar</a>
-                            <a href="" class="btn__action">Borrar</a>
+                            <a onclick="editBook('`+ element['Id_Book']+`')" class="btn__action">Editar</a>
+                            <a onclick="deleteBook('`+ element['Id_Book']+`')" class="btn__action">Borrar</a>
                         </td>
                     </tr>
             `;
         });
     })
+
+}
+
+
+async function editBook(id){
+
+    let urlupdate = url + 'update/' + id;
+
+
+    const response = await fetch(urlupdate, {
+        method: 'GET',
+    });
+
+    let modal = `
+    <section class="Section" id="UpdateForm">
+    <form id="Book__Update" method="POST" autocomplete="off" class="Main__Form" enctype="multipart/form-data">
+        <div class="Main__Form-Row">
+            <div class="Main__Form-Group">
+                <label for="ISBN">ISBN: </label>
+                <input type="text" name="ISBN" id="ISBN" placeholder="Ingrese un ISBN válido" value="` +  +`">
+                <span id="ISBN_Error"></span>
+            </div>
+        < /div>
+        <div class="Main__Form-Row">
+            <div class="Main__Form-Group">
+                <label for="Book_Title">Título del libro: </label>
+                <input type="text" name="Book_Title" id="Book_Title" placeholder="Escribe el título del libro">
+                <span id="Title_Error"></span>
+            </div>
+            <div class="Main__Form-Group">
+                <label for="Id_Author">Autor del libro: </label>
+                <select name="Id_Author" id="Id_Author" class="Input__Select">
+                    <option selected>----Selecciona un Autor----</option>
+                    <?php
+                    foreach ($data['Authors'] as $Author)
+                        echo "<option value='{$Author->Id_Author}'>{$Author->First_Name} {$Author->Last_Name}</option>";
+                    ?>
+                </select>
+                <span id="Author_Error"></span>
+            </div>
+        </div>
+
+        <div class="Main__Form-Group">
+            <label for="Book_Synopsis">Añade una pequeña sinopsis: </label>
+            <textarea name="Book_Synopsis" id="Book_Synopsis"></textarea>
+            <span id="Synopsis_Error"></span>
+        </div>
+
+        <div class="Main__Form-Row">
+            <div class="Main__Form-Group">
+                <label for="Number_Pages">Cantidad de páginas: </label>
+                <input type="number" name="Number_Pages" id="Number_Pages" placeholder="Escribe la cantidad de páginas">
+                <span id="Npages_Error"></span>
+            </div>
+            <div class="Main__Form-Group">
+                <label for="Book_Edition">Edición del libro: </label>
+                <input type="number" name="Book_Edition" id="Book_Edition" placeholder="Añade la edición del libro">
+                <span id="Edition_Error"></span>
+            </div>
+            <div class="Main__Form-Group">
+                <label for="Publication_Date">Fecha de publicación: </label>
+                <input type="date" name="Publication_Date" id="Publication_Date">
+                <span id="Date_Error"></span>
+            </div>
+        </div>
+
+        <div class="Main__Form-Row">
+            <div class="Main__Form-Group">
+                <label for="Id_Genre">Géneros: </label>
+                <select name="Id_Genre" id="Id_Genre" class="Input__Select">
+                    <option selected>----Selecciona un género----</option>
+                    <?php
+                    foreach ($data['Genre'] as $Genre)
+                        echo "<option value='{$Genre->Id_Genre}'>{$Genre->Genre_Name}</option>";
+                    ?>
+                </select>
+                <span id="Genre_Error"></span>
+
+            </div>
+            <div class="Main__Form-Group">
+                <label for="Id_Publisher">Editoriales: </label>
+                <select name="Id_Publisher" id="Id_Publisher" class="Input__Select">
+                    <option selected>----Selecciona una editorial----</option>
+                    <?php
+                    foreach ($data['Publisher'] as $Publisher) {
+                        echo "<option value='{$Publisher->Id_Publisher}'>{$Publisher->Publisher_Name}</option>";
+                    }
+                    ?>
+                </select>
+                <span id="Publisher_Error"></span>
+            </div>
+        </div>
+        <div class="Main__Form-row">
+            <div class="Main__Form-Group">
+                <label for="Book_Cover">Seleccione portada</label>
+                <input type="file" name="Book_Cover" id="Book_Cover" accept="images/*">
+            </div>
+            <span id="Cover_Error"></span>
+        </div>
+        <button type="submit" class="Main__Button Main__Button-Save">
+            <i class="fas fa-save"></i>
+            Guardar
+        </button>
+        <button onclick="closeCreateForm()" class="Main__Button Main__Button-Cancel">
+            Cancelar
+        </button>
+    </form>
+</section>
+    `
+
+
+}
+
+async function deleteBook(id){
+
+    let urldelete = url + 'Delete/' + id;
+
+    const response = await fetch(urldelete, {
+        method: 'GET'
+    });
+
+    response.json()
+    .then(data => {
+        console.log(data);
+        actualizarLista();
+    })
+
+
 
 }
