@@ -21,7 +21,6 @@ define("approot", dirname(dirname(__FILE__)));
 //Ruta dinamica
 // define("urlroot", "http://localhost/Biblioteca"); 
 
-
 define("urlroot", "https://ohara-siab.azurewebsites.net"); 
 
 //Nombre del sitio

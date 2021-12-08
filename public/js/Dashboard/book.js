@@ -274,9 +274,6 @@ async function editBook(id){
 
 }
 
-
-
-
 async function deleteBook(id){
 
     let urldelete = url + 'Delete/' + id;
