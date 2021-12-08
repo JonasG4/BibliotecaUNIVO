@@ -118,6 +118,22 @@
     color: var(--bg-light-primary);
 }
 
+.other-books {
+    width: 75%;
+    background: var(--bg-primary);;
+    border: 1px solid var(--bg-primary);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+}
+
+.other-books:hover {
+    background: #384a87;
+    color: white;
+}
+
 .content__recomendation{
     grid-column: 2;
     display: flex;

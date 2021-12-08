@@ -18,10 +18,19 @@ require_once approot . '/Views/Includes/head.php';
                         <div class="Book__Cover">
                             <img class="Book__Cover-img" src="<?= imagenurl . $data['Book']->Book_Cover ?>" alt="">
                             <div class="Book_Action">
-                                <button class="btn__buy">
+                            <form action="" method="POST">
+                                <input type="hidden" name="idBook" id="idBook" value="<?= $data['Book']->Id_Book ?>">
+                                <input type="hidden" name="nombreBook" id="nombreBook" value="<?= $data['Book']->Book_Title; ?>">
+                                <input type="hidden" name="author" id="author" value="<?= $data['Author']->First_Name . ' ' . $data['Author']->Last_Name; ?>">
+                                <input type="hidden" name="fecha" id="fecha" value="<?= $data['Book']->Publication_Date; ?>">
+                                <input type="hidden" name="image" id="image" value="<?= $data['Book']->Book_Cover; ?>">
+                                <button class="btn__buy" id="addCar" type="submit" name="btn-action">
                                     <i class="fas fa-cart-plus"></i>
-                                    Agregar al carrito</button>
+                                    Agregar al carrito
+                                </button>
+                            </form>
                                 <button class="btn__loan">Solicitar prestamo</button>
+
                             </div>
                         </div>
                         <div class="Book__Info">
@@ -80,6 +89,7 @@ require_once approot . '/Views/Includes/head.php';
                             </div>
 
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -99,6 +109,9 @@ require_once approot . '/Views/Includes/head.php';
                                 <!-- <div class="recomendation__book-title">
                                     <h4><?= $book->Book_Title ?></h4>
                                 </div> -->
+                                <div class="other-books" onclick="window.location.href='<?= urlroot . '/book/details/' . $book->Id_Book ?>'">
+                                Ver Detalles
+                                </div>
                             </div>
                     <?php
                         endif;
@@ -113,4 +126,6 @@ require_once approot . '/Views/Includes/head.php';
 
     <?php require_once approot . '/Views/Includes/footer.php'; ?>
 </body>
+<script>
+</script>
 </html>

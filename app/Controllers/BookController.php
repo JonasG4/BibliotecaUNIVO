@@ -412,10 +412,67 @@
                 'Genre' => $genre,
                 'recomendations' => $recomendation 
             ];
-
+            $dataCart = [
+                'title' => "",
+                'id' => "",
+                'author' => "",
+                'fecha' => "",
+                'image' => ""
+            ];
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                if(isset($_POST['btn-action'])) {
+                    $dataCart['id'] = $_POST['idBook'];
+                    $dataCart['title'] = $_POST['nombreBook'];
+                    $dataCart['author'] = $_POST['author'];
+                    $dataCart['fecha'] = $_POST['fecha'];
+                    $dataCart['image'] = $_POST['image'];
+                
+                    if(!isset($_SESSION['CART'])) {
+                        $producto = array(
+                            'id' =>  $dataCart['id'],
+                            'title' =>  $dataCart['title'],
+                            'author' => $dataCart['author'],
+                            'fecha' => $dataCart['fecha'],
+                            'image' => $dataCart['image']
+                        );
+                        $_SESSION['CART'][0] = $producto;
+                        $data['mensaje'] = "Producto agregado al carrito";
+                    }else {
+                        $idProductos = array_column($_SESSION['CART'],"id");
+                        if(in_array($dataCart['id'],$idProductos)){
+                            $data['mensaje'] = "El producto ya ha sido seleccionado";
+                        }else {
+                        $numeroProductos = count($_SESSION['CART']);
+                        $producto = array(
+                            'id' =>  $dataCart['id'],
+                            'title' =>  $dataCart['title'],
+                            'author' => $dataCart['author'],
+                            'fecha' => $dataCart['fecha'],
+                            'image' => $dataCart['image']
+                        );
+                        $_SESSION['CART'][$numeroProductos] = $producto;
+                        $data['mensaje'] = "Producto agregado al carrito";
+                        }
+                    }
+                }
+              
+            }
             $this->view('Book/details', $data);
-            
         }
-
+        public function mostrarCarrito() {
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
+              if(isset($_POST['btn-action'])) {
+                $id = $_POST['id'];
+                foreach($_SESSION['CART'] as $indice => $producto) {
+                  if($producto['id'] == $id) {
+                    unset($_SESSION['CART'][$indice]);
+                    echo "<script>alert('Elemento eliminado del carrito');</script>";
+                  }
+                }
+              }
+            }
+            $this->view('Book/mostrarCarrito', 'HOLA');
+        }
     }
 ?>
