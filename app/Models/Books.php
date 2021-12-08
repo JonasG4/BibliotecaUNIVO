@@ -13,7 +13,8 @@
             INNER JOIN Genres B ON A.Id_Genre = B.Id_Genre
             INNER JOIN Publishers C ON A.Id_Publisher = C.Id_Publisher
             INNER JOIN authorsbooks E ON A.Id_Book = E.Id_Book 
-            INNER JOIN authors D ON E.Id_Author = D.Id_Author');
+            INNER JOIN authors D ON E.Id_Author = D.Id_Author
+            ORDER BY A.Book_Title ASC');
             
             $Books = $this->db->resultSet();
 

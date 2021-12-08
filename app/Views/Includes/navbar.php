@@ -22,7 +22,7 @@ $navLink = [
     "catalogue" => '/book/catalogue',
     "loan" => '/loan/request',
     "favorites" => '/favorites',
-    "car" => '/productos/mostrarcarro'
+    "car" => '/book/mostrarCarrito'
 ];
 
 // A esta direccion se hara la busqueda de libros
@@ -120,9 +120,9 @@ if (isset($_GET['url'])) {
 
             <!-- MOSTRAR CARRITO -->
             <li class="nav__list-item nav__item-car iconMenu <?= $url == $navLink['car'] ? 'active' : '' ?>" onclick="setLocationMenu('<?= urlroot .  $navLink['car'] ?>')">
-                <?php if (!empty($_SESSION['CARRITO'])) : ?>
+                <?php if (!empty($_SESSION['CART'])) : ?>
                     <span class="number-cart">
-                        <?= count($_SESSION['CARRITO']); ?>
+                        <?= count($_SESSION['CART']); ?>
                     </span>
                 <?php endif; ?>
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="shopping-cart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="item__icon">

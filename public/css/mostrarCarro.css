@@ -42,6 +42,16 @@
   margin-bottom: 10px;
 }
 
+.cover-img {
+  width: 100%;
+}
+
+.icon-delete {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
 .btn-addcar {
   padding: 12px;
   background: var(--text-color-head);
@@ -66,7 +76,7 @@
 }
 
 .title-car:hover {
-  color: #3c8644;
+  color: #7BCEB5;
 }
 
 .title-table,tr{
@@ -132,15 +142,18 @@
 
 .message-car {
   width: 100%;
-  background-color: var(--text-color-head);
+  background-color: #7BCEB5;
   color: white;
   padding: 10px;
   text-align: center;
+  font-weight: bold;
+  font-size: 1.2em;
 }
 
 .table-products {
   border-collapse: collapse;
   width: 50%;
+  margin-bottom: 20px;
 }
 
 .table-products th, td {
@@ -173,7 +186,7 @@
 }
 
 .thead {
-  background-color: #222b45;
+  background-color: #7BCEB5;
   color: white;
 }
 
