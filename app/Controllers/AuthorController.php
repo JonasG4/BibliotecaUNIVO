@@ -83,13 +83,27 @@
 
                 if(empty($data['FirstName_Error']) && empty($data['LastName_Error']) && empty($data['Country_Error'])){
                     if($this->authorModel->Create($data)){
-                        header('location: ' . urlroot . '/Author/index');
+                        echo json_encode("success");
                     }else{
                         $data['Error'] = 'No es posible añadir un nuevo autor.';
                     }
+                }else{
+                    $data['ErrValidation'] = true;
+                    echo json_encode($data);
                 }
             }
-            $this->view('Dashboard/Author/index', $data);
+            if(!empty($Error)){
+                $data = [
+                        'Authors' => '',
+                        'Error' => $Error
+                    ];
+            }
+        }
+
+        public function Refresh(){
+            $Authors = $this->authorModel->Get();
+            
+            echo json_encode($Authors);
         }
 
         public function Update($Id){
@@ -108,7 +122,7 @@
                         'Last_Name' => '',
                         'LastName_Error' => '',
                         'Origin_Country' => '',
-                        'Country_Error' => '',
+                        'Country_Error' => '', 
                         'Error' => ''
                     ];
                     if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -170,12 +184,13 @@
                     $Error = 'Antes de actualizar, debes registrar un autor.';
                 }
             }
+            
             if(!empty($Error)){
                 $data = [
                         'Books' => '',
                         'Error' => $Error
                     ];
-                    $this->view('Dashboard/Book/index', $data);
+                $this->view('Dashboard/Book/index', $data);
             }
         }
 
@@ -194,7 +209,7 @@
                         'Books' => '',
                         'Error' => $Error
                     ];
-                    $this->view('Dashboard/Book/index', $data);
+                $this->view('Dashboard/Book/index', $data);
             }
         }
     }

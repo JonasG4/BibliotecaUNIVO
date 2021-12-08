@@ -21,7 +21,13 @@
                     'Error' => $Error
                 ];
             }
-            $this->view('Publisher/index', $data);
+            $this->view('Dashboard/Publisher/index', $data);
+        }
+
+        public function Refresh(){
+            $Publishers = $this->publisherModel->Get();
+            
+            echo json_encode($Publishers);
         }
 
         public function Create(){
@@ -73,13 +79,21 @@
 
                 if(empty($data['Name_Error']) && empty($data['Country_Error']) && empty($data['Phone_Error'])){
                     if($this->publisherModel->Create($data)){
-                        header('location: ' . urlroot . '/Publisher/index');
+                        echo json_encode("success");
                     }else{
                         $data['Error'] = 'No es posible añadir una nueva editorial.';
                     }
+                }else{
+                    $data['ErrValidation'] = true;
+                    echo json_encode($data);
                 }
             }
-            $this->view('Publisher/Create', $data);
+            if(!empty($Error)){
+                $data = [
+                        'Authors' => '',
+                        'Error' => $Error
+                    ];
+            }
         }
 
         public function Update($Id){
@@ -158,7 +172,7 @@
                         'Books' => '',
                         'Error' => $Error
                     ];
-                $this->view('Book/index', $data);
+                $this->view('Dashboard/Publisher/index', $data);
             }
         }
 
@@ -178,7 +192,7 @@
                         'Books' => '',
                         'Error' => $Error
                     ];
-                $this->view('Book/index', $data);
+                $this->view('Dashboard/Publisher/index', $data);
             }
         }
     }

@@ -22,7 +22,13 @@
                     'Error' => $Error
                 ];
             }
-            $this->view('Dashboard/Genre/index', $data);
+            $this->view('Dashboard/Genres/index', $data);
+        }
+
+        public function Refresh(){
+            $Genres = $this->genreModel->Get();
+            
+            echo json_encode($Genres);
         }
 
         public function Create(){
@@ -74,13 +80,21 @@
                 //Crear género
                 if(empty($data['Name_Error']) && empty($data['Description_Error'])){
                     if($this->genreModel->Create($data)){
-                        header('location: ' . urlroot . '/Genre/index');
+                        echo json_encode("success");
                     }else{
                         $data['Error'] = 'No es posible añadir un nuevo género.';
                     }
+                }else{
+                    $data['ErrValidation'] = true;
+                    echo json_encode($data);
                 }
             }
-            $this->view('Genre/Create', $data);
+            if(!empty($Error)){
+                $data = [
+                        'Authors' => '',
+                        'Error' => $Error
+                    ];
+            }
         }
 
         public function Update($Id){
@@ -154,7 +168,7 @@
                         'Books' => '',
                         'Error' => $Error
                     ];
-                $this->view('Dashboard/Genre/index', $data);
+                $this->view('Dashboard/Genres/index', $data);
             }
         }
 
@@ -173,7 +187,7 @@
                         'Books' => '',
                         'Error' => $Error
                     ];
-                $this->view('Dashboard/Genre/index', $data);
+                $this->view('Dashboard/Genres/index', $data);
             }
         }
     }

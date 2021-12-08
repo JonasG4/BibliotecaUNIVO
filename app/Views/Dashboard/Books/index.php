@@ -204,8 +204,6 @@ require_once approot . '/Views/Dashboard/Includes/navbar.php';
 
 </main>
 
-
-
 <script src="<?= urlroot . '/public/js/dashboard/navbar.js?v=' . time(); ?>"></script>
 <script src="<?= urlroot . '/public/js/dashboard/book.js?v=' . time(); ?>"></script>
 </body>

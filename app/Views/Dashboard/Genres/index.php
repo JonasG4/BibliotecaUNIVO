@@ -6,13 +6,14 @@ require_once approot . '/Views/Dashboard/Includes/navbar.php';
 
 
 <main class="main">
+    <input hidden id="url" value="<?= urlroot . '/genre/' ?>">
     <section class="Section" id="CreateForm">
-        <form id="Author__Create" method="POST" autocomplete="off" class="Main__Form" enctype="multipart/form-data"> 
+        <form id="Genre__Create" method="POST" autocomplete="off" class="Main__Form" enctype="multipart/form-data"> 
             <div class="Main__Form-Row">
                 <div class="Main__Form-Group">
                     <label for="Genre_Name">Nombre del género: </label>
                     <input type="text" name="Genre_Name" id="Genre_Name" placeholder="Ingrese el nombre del género">
-                    <span>
+                    <span id="Name_Error">
                         <?= isset($data['Name_Error']) ? $data['Name_Error'] : ''; ?>
                     </span>
                 </div>
@@ -21,7 +22,7 @@ require_once approot . '/Views/Dashboard/Includes/navbar.php';
                 <div class="Main__Form-Group">
                     <label for="Genre_Description">Descripción: </label>
                     <input type="text" name="Genre_Description" id="Genre_Description" placeholder="Añade una descripción del género">
-                    <span>
+                    <span id="Description_Error">
                         <?= isset($data['Description_Error']) ? $data['Description_Error'] : ''; ?>
                     </span>
                 </div>
@@ -80,13 +81,13 @@ require_once approot . '/Views/Dashboard/Includes/navbar.php';
                 </thead>
             </table>
         </section>
-        <p class="counter"> <?= count($data['Authors']) ?> Autores(s) </p>
+        <p class="counter"> <?= count($data['Genres']) ?> Géneros literarios(s) </p>
     </section>
 
 </main>
 
 <script src="<?= urlroot . '/public/js/dashboard/navbar.js?v=' . time(); ?>"></script>
-<script src="<?= urlroot . '/public/js/dashboard/book.js?v=' . time(); ?>"></script>
+<script src="<?= urlroot . '/public/js/dashboard/genre.js?v=' . time(); ?>"></script>
 </body>
 
 </html>

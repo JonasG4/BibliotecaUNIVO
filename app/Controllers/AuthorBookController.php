@@ -8,13 +8,17 @@
         }
 
         public function Index(){
+            $Authors = $this->authorsModel->Get();
+            $Books = $this->booksModel->Get();
             $AuthorsBooks = $this->authorsBooksModel->Get();
 
             $Error = 'No fue posible obtener los registros';
 
-            if(!empty($AuthorsBooks)){
+            if(!empty($AuthorsBooks || !empty($Authors) && !empty($Books))){
                 $data = [
                     'Title' => 'Autores y libros',
+                    'Authors' => $Authors,
+                    'Books' => $Books, 
                     'AuthorsBooks' => $AuthorsBooks,
                     'Error' => ''
                 ];
@@ -25,7 +29,13 @@
                     'Error' => $Error
                 ];
             }
-            $this->view('AuthorBook/index', $data);
+            $this->view('Dashboard/AuthorsBooks/index', $data);
+        }
+
+        public function Refresh(){
+            $AuthorsBooks = $this->authorsBooksModel->Get();
+            
+            echo json_encode($AuthorsBooks);
         }
 
         public function Create(){
@@ -69,19 +79,21 @@
     
                     if(empty($data['Author_Error']) && empty($data['Author_Error'])){
                         if($this->authorsBooksModel->Create($data)){
-                            header('location: '. urlroot . '/AuthorBook/index');
+                            echo json_encode("success");
                         }else{
                             $data['Error'] = 'No es posible añadir una nueva relación.';
                         }
+                    }else{
+                        $data['ErrValidation'] = true;
+                        echo json_encode($data);
                     }
                 }
-                $this->view('AuthorBook/Create', $data);
-            }else{
-                $data = [
-                    'AuthorsBooks' => '',
-                    'Error' => $Error
-                ];
-                $this->view('AuthorBook/index', $data);
+                if(!empty($Error)){
+                    $data = [
+                            'Authors' => '',
+                            'Error' => $Error
+                        ];
+                }
             }
         }
 
@@ -150,7 +162,7 @@
                         'Books' => '',
                         'Error' => $Error
                     ];
-                $this->view('AuthorBook/index', $data);
+                $this->view('Dashboard/AuthorsBooks/index', $data);
             }
         }
 
@@ -170,7 +182,7 @@
                         'Books' => '',
                         'Error' => $Error
                     ];
-                $this->view('AuthorBook/index', $data);
+                $this->view('Dashboard/AuthorsBooks/index', $data);
             }
         }
     }
