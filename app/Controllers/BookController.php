@@ -10,27 +10,6 @@
         }
 
         public function search(){
-        //    $table="";
-        //    $obj = $this->bookModel->filterByTitile($_POST['books']);
-            
-        //    if($obj-> rowCount() > 0){
-        //        foreach ($obj as $value) {
-        //            $table.=
-        //            '<div class="container__books">
-        //            <img src="'. $value->Book_Cover.'" alt="" class="book__cover">
-        //            <div class="book__details">
-        //            <h1 class="book__title">$value->'.$value->Book_Title.'</h1>
-        //            <h3 class="book__autor">'.$value->Book_Id_Genre.'</h3>
-        //            <p class="book__sinopsis"> 
-        //            '.$value->Book_Synopsis.'
-        //            </p>
-        //            </div>
-        //            </div>
-        //            ';
-        //         }
-        //     }
-
-            //  echo json_decode($table);
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             header("Content-type: application/json; charset=utf-8");
             $data = json_decode(file_get_contents("php://input"), true);
@@ -56,23 +35,29 @@
         
         public function Index(){
             $Books = $this->bookModel->Get();
+            $Genre = $this->genreModel->Get();
+            $Publishers = $this->publisherModel->Get();
+            $Authors = $this->authorModel->Get();
 
             $Error = 'No fue posible obtener los registros';
 
             if(!empty($Books)){
                 $data = [
-                    'Title' => 'Libros',
+                    'title' => 'Libros',
                     'Books' => $Books,
+                    'Publisher' => $Publishers,
+                    'Authors' => $Authors,
+                    'Genre' => $Genre,
                     'Error' => ''
                 ];
             }else{
                 $data = [
-                    'Title' => 'Libros',
+                    'title' => 'Libros',
                     'Books' => '',
                     'Error' => $Error
                 ];
             }
-            $this->view('Book/index', $data);
+            $this->view('Dashboard/Books/index', $data);
         }
 
         public function Create(){
@@ -82,7 +67,7 @@
 
             if(!empty($Genres) && !empty($Publishers) && !empty($Authors)){    
                 $data = [
-                    'Title' => 'Añadir libro',
+                    'title' => 'Añadir libro',
                     'Genres' => $Genres,
                     'Publishers' => $Publishers,
                     'Authors' => $Authors,
@@ -112,7 +97,7 @@
                     
                     $Book_Cover = $_FILES['Book_Cover'];
                     $data = [
-                        'Title' => 'Añadir libro',
+                        'title' => 'Añadir libro',
                         'Genres' => $Genres,
                         'Publishers' => $Publishers,
                         'Authors' => $Authors,
@@ -217,14 +202,15 @@
                             //Crear Registro
                             if($this->bookModel->Create($data) && $this->authorsBookModel->Create($data)){
                                 //Subir imagen
-                                $this->azureService->upload($Book_Cover);                            
-                            header('location: ' . urlroot . '/Book/index');
-                        }else{
+                                $this->azureService->upload($Book_Cover);     
+                                
+                                echo json_encode("success");
+                            }else{
                             $data['Error'] = 'No es posible añadir un nuevo libro.';
                         }
-                    }
+                    }   
                 }
-                $this->view('Book/Create', $data);
+                // $this->view('Dashboard/Books/Create', $data);
             }else{
                 $Error = 'Antes de añadir un nuevo libro, debes de ingresar una editorial o género.';
             }
@@ -233,7 +219,6 @@
                         'Books' => '',
                         'Error' => $Error
                     ];
-                $this->view('Book/index', $data);
             }
         }
 

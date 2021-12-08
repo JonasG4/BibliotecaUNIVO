@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: #ebf0f4;
+    display: flex;
+    height:100%;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    width: 80px;
+    min-height: 100%;
+    background: #1a2138;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active{
+    width: 250px;
+}
+
+.logo-container{
+    display: flex;
+    position: relative;
+    margin: 8px 15px;
+}
+
+
+.sidebar .logo-container .logo{
+    color: #babcc0;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 100%;
+    opacity: 0;
+    white-space: nowrap;    
+    transition: all 0.5s ease;
+    pointer-events: none;
+}
+.sidebar.active .logo{
+    pointer-events: none;
+    opacity: 1;
+}
+
+.logo-container .logo .logo-name{
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.sidebar #btn-open{
+    position: absolute;
+    color:#babcc0;
+    font-size: 20px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    right: 15px;
+    cursor: pointer;
+}
+
+.nav-list{
+    list-style: none;
+    padding:0;
+    margin: 28px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.line-divisor{
+    width: 100%;
+    height: 2px;
+    background: #2d3858;
+    margin: 10px 0;
+}
+
+.item{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    list-style: none;
+    line-height: 50px;
+    white-space: nowrap;
+}
+
+.sidebar .item .tooltip{
+    position: absolute;
+    left: 70px;
+    top: -30px;
+    width: 122px;
+    transform: translateY(50%);
+    height: 35px;
+    background: #50ac56;
+    color: #ebeced;
+    line-height: 35px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    transition: 0s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar .item:hover .tooltip{
+    transition: all 0.5s ease;
+    top: -10px;
+    opacity: 1;
+}
+
+.sidebar.active .item .tooltip{
+    opacity: 0;
+    pointer-events: none;
+}
+
+.item a{
+    display: flex;
+    color: #babcc0;
+    text-decoration: none;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.item a:hover{
+    background-color: #50ac56;
+    color: #ebeced;
+}
+.item i{
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.sidebar .item a span{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease;
+}
+
+.sidebar.active .item a span{
+    opacity: 1;
+    pointer-events: none;
+}
+
+.search{
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    left: 0;
+    border-radius: 12px;
+    background-color: #2d3858;
+    outline: none;
+    border: none;
+    padding-left: 50px;
+    font-size: 16px;
+    color: #ebeced;
+}
+
+.bx-search{
+    position: absolute;
+    /* top: -8px; */
+    z-index: 50;
+    color: #ebf0f4;
+    transition: all 0.4s ease;
+    max-height: 100%;
+    cursor: pointer;
+}
+
+.sidebar .bx-search:hover{
+    background: #50ac56 ;
+    color: #ebeced;
+}
+.sidebar.active .bx-search:hover{
+    background: none ;
+    color: #ebeced;
+}
+
+.profile-container{
+    color: #fff;
+    width: 100%;
+    margin-top:auto;
+}
+
+.profile{
+    position: relative;
+    padding: 10px 6px;
+    height: 70px;
+    background:#2d3858;
+}
+
+.profile-details{
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+    transition: all 0.5s ease;
+}
+
+.profile-details img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+    /* margin-left: 10px; */
+}
+
+.profile-info{
+    margin-left: 5px;
+}
+
+.profile-info .username{
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.profile-info .role{
+    font-size: 12px;
+}
+
+.bx-log-out{
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    min-width: 50px;
+    line-height: 50px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 25px;
+    transform: translateX(-50%);
+    text-align: center;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.sidebar.active .bx-log-out{
+    left: 88%;
+    bottom: 40%;
+    font-size: 20px;
+}
+
+.sidebar.active .profile-details{
+    opacity: 1;
+}

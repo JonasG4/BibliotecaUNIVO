@@ -8,11 +8,13 @@
         
         //recuperar todos los libros
         public function Get(){
-            $this->db->query('SELECT A.Id_Book, A.ISBN, A.Book_Title, A.Book_Synopsis, A.Book_Edition, A.Number_Pages, A.Publication_Date, A.Publication_Date, A.Book_Cover, B.Id_Genre, B.Genre_Name, C.Id_Publisher, C.Publisher_Name
+            $this->db->query('SELECT A.Id_Book, A.ISBN, A.Book_Title, A.Book_Synopsis, A.Book_Edition, A.Number_Pages, A.Publication_Date, A.Publication_Date, A.Book_Cover, B.Id_Genre, B.Genre_Name, C.Id_Publisher, C.Publisher_Name, D.First_Name, D.Last_Name
             FROM Books A
             INNER JOIN Genres B ON A.Id_Genre = B.Id_Genre
-            INNER JOIN Publishers C ON A.Id_Publisher = C.Id_Publisher');
-
+            INNER JOIN Publishers C ON A.Id_Publisher = C.Id_Publisher
+            INNER JOIN authorsbooks E ON A.Id_Book = E.Id_Book 
+            INNER JOIN authors D ON E.Id_Author = D.Id_Author');
+            
             $Books = $this->db->resultSet();
 
             if(!empty($Books)){
@@ -26,7 +28,7 @@
             FROM Books A 
             INNER JOIN Genres B ON A.Id_Genre = B.Id_Genre
             INNER JOIN Publishers C ON A.Id_Publisher = C.Id_Publisher WHERE Id_Book = :Id');
-
+            
             $this->db->bind(':Id', $Id);
 
             $Book = $this->db->single();

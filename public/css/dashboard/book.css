@@ -1,0 +1,601 @@
+.main{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width:100%;
+    max-height:100%;
+    background: #f1f1f1;
+}
+
+.main__content{
+    padding:20px;
+    max-height:100%;
+}
+
+.main__header{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 5px;
+    color: #1a2138;
+    align-items: center;
+}
+
+.main__header-link{
+    text-decoration: none;
+    color: #0578dd;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.main__tools{
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+    flex-direction: column;
+    gap:10px;
+}
+
+.tools__row{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tools__col-1{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.tool__tag{
+  color: #0578dd;;  
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.v__line{
+    width:1px;
+    height: 20px;
+    background: #000;
+}
+
+.tool__tag:first-child{
+    color: #232526;
+    font-weight:600;
+}
+
+.tool__tag-count{
+    color: #8e8e8e;
+    font-weight: 500;
+    font-size:12px;
+    margin-left: 5px;
+}
+
+.input__buscar{
+    background: rgba(8, 116, 232, 0.15);
+    width: 300px;
+    padding: 8px;
+    padding-left: 10px;
+    border-radius: 10px 0 0 10px;
+    box-shadow: 5px 0px 10px rgba(0,0,0,0.2);
+    outline: none;
+    border: 1px solid #1a2138;
+    margin:0;
+}
+
+.input__buscar::placeholder{
+    color: #23252698;
+}
+
+.input__buscar:focus-visible{
+    outline: 1px solid transparent;
+    box-shadow: 0px 0px 8px #0578dd;
+    border-color: transparent;
+}
+
+.btn__buscar{
+    background: #1a2138;
+    padding: 8px 15px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 0 10px 10px 0;
+    outline: none;
+    border: 1px solid transparent;
+    box-shadow: 5px 0px 10px rgba(0,0,0,0.2);
+}
+
+.btn__buscar:hover{
+    background: #1a2138;
+}
+
+.tool__filters{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.tool__filters-select{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.tool__filters-select::-ms-expand{
+    padding: 5px;
+}
+
+.btn__filter{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border:1px solid transparent;
+    background: #1a2138;
+    color: #fff;
+}
+
+.mid__container{
+    width: 100%;
+    max-height: 70%;
+    padding:20px;   
+    background: #ffffff;
+    border: 1px solid transparent;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow-x: scroll;
+    overflow-y: scroll
+}
+
+.table__books{
+    width: 100%;
+    overflow-y: scroll;
+    text-align: left;
+    border-collapse: collapse;
+    border-radius: 10px;
+    border: 1px solid #d8d8d8;
+    padding: 8px;   
+    color: #232526;
+}
+
+.table__head-row,
+.table__body-row{
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.table__body-row{
+    background: #f7f7f7;
+}
+
+.table__head-cell,
+.table__body-cell{      
+        padding:10px;
+}
+
+.table__cover{
+    width: 50px;
+    height: 100%;
+}
+
+.btn__action{
+    text-decoration: none;
+    color: #0578dd;
+}
+
+.counter {
+    width: 100%;
+    text-align: right;
+    padding: 10px;
+    font-style: italic;
+    color: #737374;
+}
+
+
+/*  CSS FORMULARIO*/
+
+/*Scroll bar*/
+.Section__Card-Body, html {
+    overflow: auto;
+}
+.Section__Card-Body::-webkit-scrollbar, html::-webkit-scrollbar{
+    appearance: none;
+}
+.Section__Card-Body::-webkit-scrollbar:vertical, html::-webkit-scrollbar:vertical{
+    width: 10px;
+}
+.Section__Card-Body::-webkit-scrollbar:horizontal, html::-webkit-scrollbar:horizontal{
+    width: 10px;
+}
+.Section__Card-Body::-webkit-scrollbar-button:increment, .Section__Card-Body::-webkit-scrollbar-button, .html::-webkit-scrollbar-button:increment, .html::-webkit-scrollbar-button{
+    display: none;
+}
+.Section__Card-Body::-webkit-scrollbar-thumb, html::-webkit-scrollbar-thumb {
+    background-color: var(--bg-alternative);
+    border-radius: 1.2em;
+    border: 0.15em solid #e6e6e6;
+}
+.Container-Secondary{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    padding: 1em;
+    width: 100%;
+}
+.Section{
+    position: absolute;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content:center;
+    padding: 1em;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.Section.active{
+    opacity: 1;
+    pointer-events: all;
+}
+
+/*Colores*/
+.bg-Primary{
+    background-color: var(--bg-primary);
+}
+.bg-Primary:hover{
+    background-color: var(--bg-light-primary);
+}
+.bg-Secondary{
+    background-color: var(--bg-secondary);
+}
+.bg-Secondary:hover{
+    background-color: var(--bg-light-secondary);
+}
+
+.Section__Notify-Alert{
+    background-color: var(--color-error);
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+    margin-top: 1em;
+    width: 80%;
+}
+/*Cabezera del Section*/
+.Section__Head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4em;
+    width: 100%;
+}
+.Section__Head h1{
+    color: #666666;
+    font-size: 3em;
+}
+.Section__Link{
+    display: inline-block;
+    background-color: #418f46;
+    color: #fff;
+    border-radius: 0.2em;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.5s;
+    padding: 0.5em;
+    height: 2.5em;
+    width: 25%;
+}
+.Section__Link:hover{
+    background-color: #61b866;
+}
+
+/*Tarjetas*/
+
+.Section__Card-Primary{
+    position: relative;
+    flex-grow: 1;
+    margin: 1.5em;
+    height: 30em;
+    max-height: 30em;
+    width: 20em;
+    max-width: 25em;
+    box-shadow: 0 0 7px 7px #cccccc;
+    border-top: 1em solid var(--bg-front-color);
+}
+.Card-Primary__Main-Image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 7em;
+    width: 100%;
+}
+.Card-Primary__Main-Image .Main__Image-Img{
+    width: 20%;
+    max-width: 40%;
+}
+.Card-Primary__Main-Content{
+    width: 100%;
+    height: 100%;
+    max-height: 20em;
+}
+.Section__Card-Primary .Card-Primary__Card-Head{
+    padding: 0.7em;
+    max-height: 7em;
+    width: 100%;
+}
+.Card-Primary__Head-Text h2{
+    color: var(--text-color-head);
+}
+.Card-Primary__Head-Text h2:nth-child(2){
+    color: #000;
+    font-size: 0.8em;
+}
+.Text{
+    font-size: 1.2em;
+    color: var(--text-color-head);
+    margin-right: 1em;
+}
+.Section__Card-Primary .Card-Primary__Buttons-Container{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+.Section__Card-Primary .Card-Primary__Buttons-Container a i{
+    font-size: 1.5em;
+    color: #404040;
+    transition: color 0.3s;
+    margin-left: 1em;
+}
+.Card-Primary__Buttons-Container a .Button-Update:hover{
+    color: #ff6600;
+}
+.Card-Primary__Buttons-Container a .Button-Delete:hover{
+    color: #b30059;
+}
+.Card-Primary__Card-Body{
+    position: relative;
+    height: 100%;
+    max-height: 13.5em;
+    width: 100%;
+}
+.Card-Primary__Body-Focus{
+    padding: 1em;
+    height: 100%;
+    max-height: 60%;
+    width: 100%;
+}
+.Card-Primary__Body-Focus p{
+    color: #404040;
+}
+.Card-Primary__Body-Footer{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    background-color: #d9d9d9;
+    padding: 0.5em;
+    width: 100%;
+}
+.Card-Primary__Pill{
+    background-color: var(--bg-front-color);
+    color: #fff;
+    border-radius: 1em;
+    font-size: 0.7em;
+    padding: 0.4em;
+}
+.Card-Primary__Card-Footer{
+    position: absolute;
+    bottom: 0;
+    padding: 0.5em;
+    width: 100%;
+    background-color: #418f46;
+}
+.Card-Primary__Card-Footer p{
+    color: #fff;
+    font-size: 0.8em;
+    text-align: right;
+}
+.Span-Text-Secondary{
+    color: #000;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+
+.Section__Card-Secondary{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e6e6e6;
+    box-shadow: 0 0 5px 2px #cccccc;
+    border-left: 1em solid var(--bg-front-color);
+    border-radius: 0.15em;
+    margin-top: 1em;
+    height: 10em;
+    min-height: 10em;
+    width: 90%;
+}
+.Card-Secondary__Main-Image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5em;
+    height: 100%;
+    width: 25%;
+}
+.Card-Secondary__Main-Image .Main__Image-Img{
+    object-fit: cover;
+    max-width: 50%;
+}
+.Card-Secondary__Main-Content{
+    position: relative;
+    height: 100%;
+    width: 75%;
+}
+.Section__Card-Secondary .Card-Secondary__Card-Head{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7em;
+    width: 100%;
+}
+
+.Card-Secondary__Head-Text h2{
+    color: var(--text-color-head);
+}
+.Section__Card-Secondary .Card-Secondary__Buttons-Container{
+    display: flex;
+    justify-content: space-between;
+    width: 4em;
+}
+.Section__Card-Secondary .Card-Secondary__Buttons-Container a i{
+    font-size: 1.2em;
+    color: #404040;
+    transition: color 0.3s;
+}
+.Card-Secondary__Buttons-Container a .Button-Update:hover{
+    color: #ff6600;
+}
+.Card-Secondary__Buttons-Container a .Button-Delete:hover{
+    color: #b30059;
+}
+.Section__Card-Secondary .Card-Secondary__Card-Body{
+    height: 4.5em;
+    width: 100%;
+}
+.Section__Card-Secondary .Card-Secondary__Body-Focus{
+    font-size: 0.8em;
+    padding: 0.5em;
+    height: 100%;
+}
+.Section__Card-Secondary .Card-Secondary__Body-Focus p{
+    color: #595959;
+    font-weight: bold;
+}
+.Card-Secondary__Body-Footer .Section__Pill{
+    border-radius: 0.5em;
+    background-color: var(--bg-secondary);
+    color: #fff;
+    font-size: 0.7em;
+    height: 2.4em;
+    padding: 0.5em;
+}
+.Section__Card-Secondary .Card-Secondary__Card-Footer{
+    position: absolute;
+    bottom: 0;
+    background-color: #1a1a1a;
+    padding: 0.5em;
+    width: 100%;
+}
+.Card-Secondary__Card-Footer p{
+    color: #fff;
+    font-size: 0.8em;
+    text-align: right;
+}
+.Span-Text{
+    color: var(--text-color-head);
+    font-size: 1em;
+    font-weight: bold;
+}
+
+/*Formulario*/
+.Main__Form{
+    border: 0.1em solid #d9d9d9;
+    border-radius: 0.2em;
+    padding: 1em;
+    width: 50%;
+    background-color: #fff;
+}
+.Main__Form-Row{
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+}
+.Main__Form .Main__Form-Group{
+    display: inline-block;
+    width: 100%;
+}
+.Main__Form-Group label{
+    display: block;
+    color: #808080;
+    font-size: 0.9em;
+} 
+.Main__Form-Group input, .Input__Select, textarea{
+    display: block;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 0 0.01em #999999;
+    margin: 0.5em 0 0.1em 0;
+    padding: 0.7em;
+    width: 100%;
+}
+.Main__Form-Group textarea{
+    resize: none;
+}
+.Main__Form-Group input:focus, textarea:focus{
+    box-shadow: 0 0 0.1em 0.1em var(--bg-front-color);
+}
+.Main__Form-Group input[type='number']::-webkit-inner-spin-button, .Main__Form-Group input[type='number']::-webkit-outer-spin-button{
+    appearance: none;
+}
+.Main__Form .Main__Button{
+    display: block;
+    border: none;
+    padding: 0.5em 0;
+    width: 100%;
+}
+.Main__Form span{
+    display: inline-block;
+    color: #ee4466;
+    font-size: 0.8em;
+    height: 1em;
+}
+.Main__Button-Save{
+    background-color: var(--bg-front-color);
+    color: #00b386;
+    transition: background-color 0.5s;
+    margin-top: 1em;
+    cursor: pointer;
+}
+
+.Main__Button-Cancel{
+    background-color: var(--bg-front-color);
+    color: red;
+    transition: background-color 0.5s;
+    margin-top: 1em;
+    cursor: pointer;
+}
+
+.Main__Button-Save:hover{
+    background-color: #3b4a78;
+    cursor: pointer;
+}
+.Main__Link{
+    display: inline-block;
+    background-color: #e91640;
+    color: #fff;
+    border-radius: 0.2em;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.5s;
+    padding: 0.5em;
+    height: 2.5em;
+    width: 25%;
+}
+.Main__Link:hover{
+    background-color: #f05c79;
+}
+
+.Title{
+    color: var(--bg-front-color);
+}
+
+@media(min-width: 781px){
+    .Main__Form{
+        width: 40%;
+    }
+    .Main__Form .Main__Form-Row{
+        flex-flow: row nowrap;
+    }
+    .Main__Form-Group{
+        width: 45%;
+        margin-right: 0.5em;
+    }
+}
