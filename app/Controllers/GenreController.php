@@ -22,7 +22,7 @@
                     'Error' => $Error
                 ];
             }
-            $this->view('Genre/index', $data);
+            $this->view('Dashboard/Genre/index', $data);
         }
 
         public function Create(){
@@ -154,7 +154,7 @@
                         'Books' => '',
                         'Error' => $Error
                     ];
-                $this->view('Genre/index', $data);
+                $this->view('Dashboard/Genre/index', $data);
             }
         }
 
@@ -173,7 +173,7 @@
                         'Books' => '',
                         'Error' => $Error
                     ];
-                $this->view('Genre/index', $data);
+                $this->view('Dashboard/Genre/index', $data);
             }
         }
     }

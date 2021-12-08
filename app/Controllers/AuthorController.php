@@ -20,10 +20,10 @@
                 $data = [
                     'Title' => 'Autores',
                     'Authors' => '',
-                    'Error' => $Error
+                    'Error' => $Error 
                 ];
             }
-            $this->view('Author/index', $data);
+            $this->view('Dashboard/Authors/index', $data);
         }
 
         public function Create(){
@@ -89,7 +89,7 @@
                     }
                 }
             }
-            $this->view('Author/Create', $data);
+            $this->view('Dashboard/Author/index', $data);
         }
 
         public function Update($Id){
@@ -175,7 +175,7 @@
                         'Books' => '',
                         'Error' => $Error
                     ];
-                $this->view('Book/index', $data);
+                    $this->view('Dashboard/Book/index', $data);
             }
         }
 
@@ -194,7 +194,7 @@
                         'Books' => '',
                         'Error' => $Error
                     ];
-                $this->view('Book/index', $data);
+                    $this->view('Dashboard/Book/index', $data);
             }
         }
     }
