@@ -32,6 +32,12 @@
             }
        
         }
+
+        public function Refresh(){
+            $Books = $this->bookModel->Get();
+            
+            echo json_encode($Books);
+        }
         
         public function Index(){
             $Books = $this->bookModel->Get();
@@ -181,7 +187,6 @@
                         $data['Cover_Error'] = 'Por favor, sube una portada para el libro';
                     }
                     
-
                     if(empty($data['ISBN_Error']) && empty($data['Title_Error']) && empty($data['Synopsis_Error']) && empty($data['Edition_Error']) && empty($data['NumberPages_Error']) && empty($data['Date_Error']) && empty($data['Genre_Error']) && empty($data['Publisher_Error']) && empty($data['Book_Error'])){
 
                         //Extraer extension
@@ -208,9 +213,11 @@
                             }else{
                             $data['Error'] = 'No es posible añadir un nuevo libro.';
                         }
-                    }   
+                    }else{
+                        $data['ErrValidation'] = true;
+                        echo json_encode($data);
+                    }
                 }
-                // $this->view('Dashboard/Books/Create', $data);
             }else{
                 $Error = 'Antes de añadir un nuevo libro, debes de ingresar una editorial o género.';
             }
